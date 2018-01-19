@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--stylesheet imports-->
+    <link rel="stylesheet" href="leaflet.css" />
+  </head>
+  <body>
+    <!--left panel-->
+    <div style="position:fixed;left:0px;width:400px">
+    </div>
+    <!--map-->
+    <div id="map" style="position:fixed;right:0px;left:400px;height:100%;">
+    </div>
+
+    <!--javascript imports-->
+    <script src="leaflet.js"></script>
+    <script src="health_centers.js"></script>
+
+    <!--Your code starts here-->
+    <script>
+      var map = L.map('map', {
+        center: [39.9522, -75.1639],
+        zoom: 14
+      });
+      var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        subdomains: 'abcd',
+        minZoom: 0,
+        maxZoom: 20,
+        ext: 'png'
+      }).addTo(map);
+    </script>
+    <script>
+      /* =====================
+
+      # Week 2 - Assignment
+
+      ## Introduction
+
+       This week's assignment as having two separate parts:
+
+       1. Log a series of arrays to the console that represents the health_centers dataset in array form. For example, [{'first': 1, 'second': 44}, {'first': 2, 'second': 12}] becomes [['first','second'],[1, 44],[2, 12]]
+
+       2. Put a marker on the map for each health center in the specified lat/lng coordinates with a popup (a simple text dialog) that shows that location's name when its marker is clicked.
+
+       EXTRA: Some of these locations offer dental services as well. Can you find some way to give dental locations a different icon? (Here's some relevant documentation: http://leafletjs.com/reference.html#icon)
+
+       Remember: functions are meant to facilitate code comprehension and reuse. Try to use them to organize your code.
+      ===================== */
+
+
+      /* =====================
+
+      Start code
+
+      ===================== */
+
+      var jsonToCsv = function(json) { console.log(json); };
+
+
+      var addMarkers = function(map) {};
+
+      /* =====================
+
+      End code
+
+      ===================== */
+
+
+      jsonToCsv(healthCenters);
+      addMarkers(map);
+    </script>
+    <!--Your code ends here-->
+  </body>
+</html>
