@@ -12,6 +12,10 @@
     <div id="map" style="position: absolute; right: 0; left: 400px; top: 0; bottom: 0;"></div>
 
     <!--javascript imports-->
+    <!--
+      We'll eventually be writing all javascript in separate files (like
+      those referenced below) to better organize our thoughts
+    -->
     <script src="leaflet.js"></script>
     <script src="part4-data-clean.js"></script>
     <script src="part4-data-dirty.js"></script>
@@ -20,24 +24,29 @@
 
     /* =====================
 
-    # Lab 1, Part 4 — Data Transformation
+    # Lab 2, Part 2 — Data Transformation
 
     ## Introduction
 
-    We're going to explore Philadelphia Bike Share locations. We will be using data from OpenDataPhilly (https://www.opendataphilly.org/dataset/bike-share-stations).
+    We're going to explore Philadelphia Bike Share locations. We will be using data from
+    OpenDataPhilly (https://www.opendataphilly.org/dataset/bike-share-stations).
 
-    We have converted the data from OpenDataPhilly into an array of arrays similar to part3. However, our arrays for bike share data have an extra data point:
+    We have converted the data from OpenDataPhilly into an array of arrays
+    (e.g. [[],[]], similar to part3). However, our arrays for bike share data
+    have an extra data point:
 
     1. lat
     2. lng
     3. label
     4. number of bike share docks at the station
 
-    This data is assigned to variable "data" in the code below. You can view the entire array in the part4-data-clean.js file.
+    This data is assigned to variable "data" in the code below. You can view the entire array in
+    the part4-data-clean.js file.
 
     ## Data Processing
 
-    We are only interested in bike share stations with more than 20 docks. Programmatically create a new array, variable "dataFiltered" that only contains locations with more than 20 docks.
+    We are only interested in bike share stations with more than 20 docks. Programmatically create
+    a new array, variable "dataFiltered" that only contains locations with more than 20 docks.
 
     ## Add Markers to the map
 
@@ -45,7 +54,9 @@
 
     ## Working with Dirty Data
 
-    Often, our data will contain inconsistencies that can cause problems in our code. In the code below, switch out "bikeArrayClean" with "bikeArrayDirty". If you reload your map now, the markers should be gone. You can review the dirty data in part4-data-dirty.js.
+    Often, our data will contain inconsistencies that can cause problems in our code. In the code
+    below, switch out "bikeArrayClean" with "bikeArrayDirty". If you reload your map now, the
+    markers should be gone. You can review the dirty data in part4-data-dirty.js.
 
     Without modifying part4-data-dirty.js, change your code to account for the dirty data.
 

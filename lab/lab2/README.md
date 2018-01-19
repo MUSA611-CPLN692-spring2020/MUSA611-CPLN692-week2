@@ -7,13 +7,13 @@ work more readable.
 
 #### Part 1
 
-Open [part1-functions-are-values.html](part1-functions-are-values.html)
+Open [lab2/part1-functions-are-values.html](part1-functions-are-values.html)
 and follow in-comment instructions.
 
 
 #### Part 2
 
-Reopen [lab1/part4-data-transformation.html](../lab2/part4-data-transformation.html)
+Reopen [lab1/part4-data-transformation.html](../lab1/part4-data-transformation.html)
 and reorganize the work you did there in terms of discrete functions.
 Try to organize your code into these tasks:
 - A function to filter values
@@ -32,39 +32,36 @@ the map.
 ```javascript
 var a = "Something"
 
-// Side effects
+// Side effects (Note that this function reaches outside its scope and into
+// the wider world - in this case, simply referring to the variable `a`)
 function changeA() {
   a = "Something else";
 }
 changeA()
 
-// Pure - no side-effects
+// Pure - no side-effects (Nothing in the function reaches beyond its scope.)
+// More complex cases can be handled by creating functions that take arguments.
+// We still refer to functions which take arguments as pure if they refer only to
+// things defined within their scope or the arguments they receive. This implies that
+// every single time you run a function with the same arguments, you should get
+// the exact same result. This is sometimes referred to as 'referential transparency'
+// and it helps us read code which would otherwise depend on wider context.
+// https://en.wikipedia.org/wiki/Referential_transparency
+
 function pureFunction() {
   return "Something else";
 }
 a = pureFunction()
 ```
 
-
 #### Part 4
 
-It is important to be able to think about functions abstractly. When
-properly written, they can be popped in and out of your code almost
-seemlessly. See if you can rewrite the code you've written inside the
-loop to use all of the functions you wrote without saving anything to
-a variable. If your functions are written purely (all but the last
-one, which necessarily accessses the map) you will be able to chain
-function calls together into a data pipeline.
-
-
-#### Part 5
-
 The data you've been working with can be found in
-[part4-data-clean.js](../lab1/part4-data-clean.js) and
-[part4-data-dirty.js](../lab1/part4-data-dirty.js). These files are
+[lab1/part4-data-clean.js](../lab1/part4-data-clean.js) and
+[lab1/part4-data-dirty.js](../lab1/part4-data-dirty.js). These files are
 basically just [JSON](http://www.json.org/) records of data that was
 originally stored in CSV (comma separated value) form. Try to think
 through the steps necessary to convert rows of a CSV into arrays of
-data. If you have some ideas, try your luck in
-[part5-convert-csv.html](part5-convert-csv.html) to see how far you get.
+objects. If you have some ideas, try your luck in
+[lab2/part4-convert-csv.html](part5-convert-csv.html) to see how far you get.
 

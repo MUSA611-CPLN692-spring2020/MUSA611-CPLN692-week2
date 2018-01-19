@@ -15,19 +15,27 @@
     <script>
       /* =====================
 
-      # Lab 2, Part 5 — Convert JSON to CSV
+      # Lab 2, Part 5 — Convert CSV to JSON
 
       ## Introduction
 
       Creating this week's homework assignment, it was necessary to convert the data stored in
-      healthCentersCSV from its native format (CSV)to JSON. This is a difficult task partially because
+      healthCentersCSV from its native format (CSV) to JSON. This is a difficult task partially because
       it is hard to think about all of the edge cases you might encounter and partially because
       datasets are so rarely 'clean'.
 
       Try your hand at a simplified version of this task:
-      For each row in the CSV, console.log an array with all columns separated into different fields.
+      For each row in the 'CSV' (instead of separate lines, our 'CSV' is broken up by semicolons),
+      console.log an array with all columns separated into different fields and all lines represented
+      as separate arrays.
 
       For example, given the row "I'm,a,little,teapot", you will print out ["I'm", "a", "little", "teapot"].
+
+      Hint: It might be useful to structure this data as an array of arrays. The outer array represents
+      all the rows of our CSV, while each inner array represents one such row.
+
+      Hint 2: Check out this method that all strings have (practice using it on small, simplified examples!):
+      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
 
       ===================== */
 
@@ -37,6 +45,7 @@
 
       ===================== */
 
+      // feel free to comment this line out if it is too noisy in your console!
       console.log(healthCentersCSV)
 
       /* =====================
