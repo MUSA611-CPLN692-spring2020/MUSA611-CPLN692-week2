@@ -70,6 +70,16 @@
 
       var addMarkers = function(map) {};
 
+      var split_temp = healthCenters.split(';')
+      var newHealthCenters = []
+
+      for (var i = 0; i < split_temp.length; i = i+1){
+        newHealthCenters.push(split_temp[i].split(','))
+      }
+
+      console.log(newHealthCenters[1])
+
+
       /* =====================
 
       End code

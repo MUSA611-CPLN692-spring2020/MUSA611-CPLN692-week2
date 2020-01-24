@@ -65,15 +65,19 @@
       ext: 'png'
     }).addTo(map);
 
-    /* =====================
+    let restaurantData = [[39.951494, -75.169467, "Gran Caffe L'Aquila"], [39.950677, -75.170936, "The Love"]]
 
-    Start code
+    restaurantData.push([39.960826, -75.170127, "Gyu-Kaku Japanese BBQ"], [39.955240, -75.155719, "Chubby Cattle"])
 
-    ===================== */
+    for (i = 0; i < restaurantData.length; i++){
+      L.marker([restaurantData[i][0], restaurantData[i][1]]).addTo(map).bindPopup(restaurantData[i][2]);
+      }
+      /*
+      L.popup()
+      .setLatLng([restaurantData[i][0], restaurantData[i][1]])
+      .setContent(restaurantData[i][2])
+      .openOn(map); */
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
 
     /* =====================
 

@@ -45,8 +45,15 @@
 
       ===================== */
 
+      var rows = healthCentersCSV.split(';')
+      var new_HC = []
+
+      for (var i = 0; i < rows.length; i = i+1){
+        new_HC.push(rows[i].split(','))
+      }
+
       // feel free to comment this line out if it is too noisy in your console!
-      console.log(healthCentersCSV)
+      console.log(new_HC)
 
       /* =====================
 
