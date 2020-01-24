@@ -7,6 +7,7 @@
 #### Skills Review
 
 * Code academy skills from week 1
+  - Test change
   - Variables and data types
   - Control Flow (excluding loops, focusing on if/else)
   - Functions and scope
@@ -48,4 +49,3 @@ the assignment's [index.html](assignment/index.html))
 Some health centers offer dental services as well. Can you find a way to
 give centers that provide dental services a different icon than those
 that do not?
-
