@@ -24,10 +24,10 @@
 
 * None of the 'PRO' (non-free) sections are assigned!
 * Complete Units in the Course Academy [Javascript coursework](https://www.codecademy.com/learn/javascript)
-  - 5. Arrays
-  - 6. Loops
-  - 7. (OPTIONAL) Iterators
-  - 8. Objects
+  - Arrays (5)
+  - Loops (6)
+  - *OPTIONAL* Iterators (7)
+  - Objects (8)
 
 #### Project
 
