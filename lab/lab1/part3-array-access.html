@@ -71,9 +71,20 @@
 
     ===================== */
 
+    var restaurantData = [[39.956380, -75.157095, 'Lee How Fook'], 
+    [39.953769, -75.156621, 'Banana Leaf Malaysian Cuisine'],
+    [39.954104, -75.155911, 'Penang Restaurant']]
+
     L.marker([0, 0]).addTo(map);
     L.marker([0, 0]).addTo(map);
     L.marker([0, 0]).addTo(map);
+
+    for (i=0; i<restaurantData.length; i++){
+        var lat = restaurantData[i][0];
+        var lng = restaurantData[i][1];
+        var label = restaurantData[i][2];
+        L.marker([lat, lng]).addTo(map);
+    }
 
     /* =====================
 

@@ -48,6 +48,13 @@
       // feel free to comment this line out if it is too noisy in your console!
       console.log(healthCentersCSV)
 
+      // all columns separated into diff fields and all lines as separate arrays
+      entries = healthCentersCSV.split(';');
+      var final = [];
+      for (var i=0; i<entries.length; i++){
+        final.push(entries[i].split(','));
+      }
+
       /* =====================
 
       End code
