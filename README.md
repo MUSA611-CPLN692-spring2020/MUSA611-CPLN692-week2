@@ -3,6 +3,7 @@
 *As always: make a copy of this repository to commit changes to*
 
 ## Week 1 Review
+- my name is Leanne 
 
 #### Skills Review
 
