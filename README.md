@@ -1,6 +1,7 @@
 # Open Source Tools for GIS - Week 2
 
 *As always: make a copy of this repository to commit changes to*
+# My name is Miaoyan
 
 ## Week 1 Review
 
@@ -48,4 +49,3 @@ the assignment's [index.html](assignment/index.html))
 Some health centers offer dental services as well. Can you find a way to
 give centers that provide dental services a different icon than those
 that do not?
-
