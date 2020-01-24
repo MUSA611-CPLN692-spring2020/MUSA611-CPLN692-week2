@@ -1,7 +1,7 @@
 # Open Source Tools for GIS - Week 2
 
 *As always: make a copy of this repository to commit changes to*
-# My name is Miaoyan
+# My name is xxx
 
 ## Week 1 Review
 
