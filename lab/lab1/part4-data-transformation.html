@@ -70,9 +70,18 @@
     ===================== */
 
     var data = bikeArrayClean;
-    var bigStations = [];
 
-    function cleanEntry(arr){
+    var filterStations = function(stations, limit){
+      var bigStations = []
+      for(var i = 0; i < stations.length; i++){
+        if (stations[i][3] > limit) {
+          bigStations.push(stations[i]);
+        }
+      }
+      return bigStations;
+    }
+
+    var cleanEntry = function(arr){
       var clean = arr.slice(0,4);
       var numIndeces = [0,1,3];
       var text = '';
@@ -85,18 +94,8 @@
       return clean
     }
 
-    for(var i = 0; i < data.length; i++){
-      data[i] = cleanEntry(data[i]);
-    }
-
-    for(var i = 0; i < data.length; i++){
-      if(data[i].length > 3){
-        var numStations = data[i][3];
-        if(numStations > 20){
-          bigStations.push(data[i]);
-        }
-      }
-    }
+    data = data.map(cleanEntry);
+    bigStations = filterStations(data, 20);
 
     /* =====================
 

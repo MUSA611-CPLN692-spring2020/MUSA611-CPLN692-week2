@@ -58,14 +58,36 @@
        A hint to get you started: functions are often used to label a unit of work (such as
        testing whether or not a value is a string).
       **/
-      for (var i = 0; i < theArray.length, i++) { /* Do stuff here */ }
+
+      var isString = function(value){
+        return (typeof value === 'string');
+      };
+
+      var isNum = function(value){
+        return (typeof value === 'number');
+      };
+
+      var addVal = function(sum, value){
+        if (isString(value)) {
+          return sum + value.length;
+        } else if(isNum(value)){
+          return sum + value;
+        } else {
+          console.log("Not sure how to proceed with value:", value);
+        }
+        return sum;
+      }
+
+      for (var i = 0; i < theArray.length; i++) {
+        yourSum = addVal(yourSum, theArray[i]);
+      }
 
       /* =====================
 
       End code
 
       ===================== */
-      console.log("Task successful: ", yourSum === 169)
+      console.log("Task successful: ", yourSum === 169);
     </script>
   </body>
 </html>

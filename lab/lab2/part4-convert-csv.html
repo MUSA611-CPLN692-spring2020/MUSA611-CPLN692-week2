@@ -15,7 +15,7 @@
     <script>
       /* =====================
 
-      # Lab 2, Part 5 — Convert CSV to JSON
+      # Lab 2, Part 4 — Convert CSV to JSON
 
       ## Introduction
 
@@ -46,7 +46,12 @@
       ===================== */
 
       // feel free to comment this line out if it is too noisy in your console!
-      console.log(healthCentersCSV)
+      // console.log(healthCentersCSV)
+      var rows = healthCentersCSV.split(';');
+      var printRow = function(row) {
+        console.log(row.split(','));
+      };
+      rows.map(printRow);
 
       /* =====================
 
