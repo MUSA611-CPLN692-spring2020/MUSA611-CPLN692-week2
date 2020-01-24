@@ -10,7 +10,8 @@
   - Variables and data types
   - Control Flow (excluding loops, focusing on if/else)
   - Functions and scope
-
+  -Another point
+  
 * Week 1 assignment
   - Review of our first assignment
 
@@ -48,4 +49,3 @@ the assignment's [index.html](assignment/index.html))
 Some health centers offer dental services as well. Can you find a way to
 give centers that provide dental services a different icon than those
 that do not?
-
