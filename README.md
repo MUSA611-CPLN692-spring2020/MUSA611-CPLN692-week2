@@ -5,6 +5,7 @@
 ## Week 1 Review
 
 #### Skills Review
+Yichen Lei
 
 * Code academy skills from week 1
   - Variables and data types
@@ -48,4 +49,3 @@ the assignment's [index.html](assignment/index.html))
 Some health centers offer dental services as well. Can you find a way to
 give centers that provide dental services a different icon than those
 that do not?
-
