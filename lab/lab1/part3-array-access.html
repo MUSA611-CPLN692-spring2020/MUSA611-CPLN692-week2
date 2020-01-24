@@ -71,9 +71,20 @@
 
     ===================== */
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    // Task 1: Data Storage
+    var restaurantData = [
+      [39.9462, -75.145, 'Zahav'],
+      [39.9489, -75.176,'Friday Saturday Sunday'],
+      [39.9547, -75.156, 'Tin Ho Wan'],
+      [39.9524, -75.192, 'Meyerson Hall'],
+      [39.9522, -75.16, 'City Hall']
+    ];
+
+    for(var i = 0; i < restaurantData.length; i++){
+      L.marker(
+        [restaurantData[i][0],restaurantData[i][1]]
+      ).bindPopup(restaurantData[i][2]).addTo(map);
+    }
 
     /* =====================
 
