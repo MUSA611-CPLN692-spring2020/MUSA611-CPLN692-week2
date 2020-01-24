@@ -32,16 +32,12 @@
 #### Project
 
 We're producing a simple map to help people find health centers in the
-Philadelphia area. Our application has two goals:
+Philadelphia area. Our application has a few goals. (Full instructions in
+the assignment's [index.html](assignment/index.html))
 
-First, we'd like to provide this data in javascript arrays. We should
-print these arrays to the console.
 * On application start, use `console.log` to show an array of arrays
   in which the first sub-array contains keys and the rest of the arrays
   contain the 'rows' of our data
-
-Second, we want to know where the health centers are located within the
-zip codes from 19140 to 19149 (inclusive).
 * All and only markers found within the zip code range from 19140 to
   19149 should appear
 * Each marker should have custom content that comes up in a dialog when
