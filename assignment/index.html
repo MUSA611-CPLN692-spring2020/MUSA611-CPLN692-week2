@@ -41,7 +41,10 @@
 
        1. Log a series of arrays to the console that represents the health_centers dataset
        in array form. For example, [{'first': 1, 'second': 44}, {'first': 2, 'second': 12}]
-       becomes [['first','second'],[1, 44],[2, 12]]. (Hint: Review Lab2, part4 which
+       becomes [
+       ['first','second']
+       ,[1, 44],
+       [2, 12]]. (Hint: Review Lab2, part4 which
        deals with a similar issue)
 
        2. Put a marker on the map for each health center in the specified lat/lng coordinates
@@ -65,10 +68,59 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+
+      var jsonToCsv = function(jsonArray) {
+        var csv = [];
+        var keys = Object.keys(jsonArray[0]);
+
+        csv.push(keys);
+
+        for (var i = 0; i < jsonArray.length; i++) {
+          var jsonItem = jsonArray[i];
+          var row = [];
+
+          for (var k = 0; k < keys.length; k++) {
+            var columnKey = keys[k];
+
+            row.push(jsonItem[columnKey])
+          }
+
+          csv.push(row);
+        }
+
+        return csv;
+      };
 
 
-      var addMarkers = function(map) {};
+      var addMarkers = function(map) {
+        var dentalIcon = L.icon({
+            iconUrl: 'images/icons8-marker-96.png',
+            iconSize: [25, 25]
+        });
+        var markerIconOption = {"icon": dentalIcon}
+
+          for (var i = 0; i < healthCenters.length; i = i + 1) {
+            var healthCenter = healthCenters[i];
+            if (healthCenter["ZIP"] >= 19140 && healthCenter["ZIP"] <= 19149) {
+
+                if (healthCenter["DENTAL_PHONE"] !== "N/A") {
+                  L.marker([healthCenter["LAT"], healthCenter["LNG"]], markerIconOption).addTo(map);
+                } else {
+                  L.marker([healthCenter["LAT"], healthCenter["LNG"]]).addTo(map);
+                }
+            }
+
+          }
+
+
+      };
+
+
+
+
+      var csvVals = jsonToCsv(healthCenters);
+
+      console.log(csvVals);
 
       /* =====================
 
