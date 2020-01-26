@@ -10,4 +10,4 @@ const timestwo = function (num){return num*2};
 
 doubled = fmap([1, 2, 3, 4, 5], timestwo);
 
-"abc123;abc123".split("2") 
+"abc123;abc123".split("2")

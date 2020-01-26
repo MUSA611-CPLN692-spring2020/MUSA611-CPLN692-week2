@@ -70,15 +70,59 @@
 
       var addMarkers = function(map) {};
 
-      var split_temp = healthCenters.split(';')
-      var newHealthCenters = []
+      /* ========================
+       Step 1: Data preparation
+      ==========================*/
 
-      for (var i = 0; i < split_temp.length; i = i+1){
-        newHealthCenters.push(split_temp[i].split(','))
+      const itemList = ['LNG', 'LAT', 'OBJECTID', 'NAME', 'ORGANIZATION', 'ZIP', 'PHONE', 'WEBSITE', 'DENTAL_PHONE', 'FULL_ADDRESS']
+      let HC_new_arr = [itemList];
+
+      for (var i = 0; i < healthCenters.length; i = i + 1 ){  //to loop over each object (each set of health center information) stored in the array healthCenters
+          var temp = []   //to create a temporary array to store the values of key each in healthCenters[i]
+          for (var j = 0; j < itemList.length; j = j + 1) {  //to loop over each key (LNG, LAT, etc) of the element, which is stored in advance in itemList
+            temp.push(healthCenters[i][itemList[j]]) //to store the key's value to the temporary array
+          }
+//          console.log(temp)  //to check we get it right
+          HC_new_arr.push(temp)  // add this temporary array to the newly created array HC_new_arr, in the next iteration, the array is cleared
       }
 
-      console.log(newHealthCenters[1])
+      console.log(HC_new_arr)
 
+      /* ========================
+       Step 2 & 3: Add and filter markers
+      ==========================*/
+
+      //make a new array where health centers not in zipcode range 19140-19149 are filtered out
+      let HC_new_arr_fil = HC_new_arr.filter(element => {
+        return element[5] >= 19140 & element[5] <= 19149}
+      )
+
+      console.log(HC_new_arr_fil)
+      //add markers
+      for (var i = 1; i < HC_new_arr_fil.length; i++){
+          L.marker([HC_new_arr_fil[i][1], HC_new_arr_fil[i][0]]).addTo(map).bindPopup(HC_new_arr_fil[i][3])
+        }
+
+      /* ========================
+       Step 4: Add icons for health centers providing dental services
+      ==========================*/
+
+      var myIcon = L.icon({
+      iconUrl: 'https://cdn4.iconfinder.com/data/icons/dental-colors-doodle/91/Dental_Doodle_C-14-512.png',
+      iconSize: [38, 38],
+      iconAnchor: [23, 45],
+      popupAnchor: [-3, -76],
+  //    shadowUrl: 'my-icon-shadow.png',
+      shadowSize: [68, 95],
+      shadowAnchor: [22, 94]
+  });
+
+      //add an extra icon to health centers providing dental services
+      for (var i = 1; i < HC_new_arr_fil.length; i++){
+        if (HC_new_arr_fil[i][8] != 'N/A'){
+        L.marker([HC_new_arr_fil[i][1], HC_new_arr_fil[i][0]], {icon: myIcon}).addTo(map).bindPopup(HC_new_arr_fil[i][3])
+      }
+  }
 
       /* =====================
 
