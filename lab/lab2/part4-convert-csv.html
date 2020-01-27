@@ -45,9 +45,17 @@
 
       ===================== */
 
+HS = healthCentersCSV.split(';')
+for (i=0;i<HS.length;i++){
+  HS[i]=HS[i].split(',')
+}
+console.log(HS)
       // feel free to comment this line out if it is too noisy in your console!
-      console.log(healthCentersCSV)
-
+HS = healthCentersCSV.split(';')
+var holder=[];
+for (i=0;i<HS.length;i++){
+  if(HS[i].length>1){holder.push(HS[i].split(","))}
+}
       /* =====================
 
       End code
