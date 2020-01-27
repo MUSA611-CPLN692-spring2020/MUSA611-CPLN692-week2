@@ -70,10 +70,15 @@
     Start code
 
     ===================== */
+restaurantData = [[39,-75,"restaurant#1"],[39.1,-75,"restaurant#2"]]
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+for(i=0; i<restaurantData.length;i++){
+  L.marker([restaurantData[i][0], restaurantData[i][1]]).bindPopup(restaurantData[i][2]).openPopup().addTo(map);
+}
+
+
+
+
 
     /* =====================
 
