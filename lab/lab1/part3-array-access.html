@@ -70,16 +70,20 @@
     Start code
 
     ===================== */
+    var restaurantData = [[39.953181, -75.193022, 'United By Blue'], [39.954546, -75.194688, 'Spread'], [39.953713, -75.188565, 'Shack Shack'], 
+    [39.953661, -75.197734,'Honegrow'],[39.954031, -75.200703,'Chipotle']];
+    var i;
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    for (i = 0; i < restaurantData.length; i++){
+      console.log(restaurantData[i]);
+      L.marker([restaurantData[i][0],restaurantData[i][1]]).bindPopup(restaurantData[i][2]).addTo(map)  
+    }
 
     /* =====================
 
     End code
-
     ===================== */
+
 
     </script>
   </body>

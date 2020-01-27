@@ -63,14 +63,55 @@
     ===================== */
 
     var data = bikeArrayClean;
+    var data = bikeArrayDirty;
+    console.log(bikeArrayDirty);
 
     /* =====================
 
     Start code to filter data
 
     ===================== */
+    var filter_dirty_data = [];
+    for(i=0;i<data.length;i++){
+      if(data[i].length > 3){
+        for(j=0;j<data[i].length;j++){
+            var arrayValue = data[i][j];
+            //searching if value includes stations,
+            if(arrayValue.includes('stations')){
+               //console.log(arrayValue);
+               arrayValue = arrayValue.replace('stations', '');
+               //convert value to a number for later use
+               arrayValue = Number(arrayValue);
+               data[i][j] = arrayValue;
+               console.log(data[i][j]);
+            }
+          }
+      //Only adding to array if # of stations is >= 20
+        if(data[i][3] >= 20){
+          filter_dirty_data.push(data[i]);
+        }
+        //console.log(filter_dirty_data);
+      }
+      else{
+        console.log('Did not contain any bike station data, removed from filter')
+      }
+    }
+    for(i=0;i<filter_dirty_data.length;i++){
+      filter_dirty_data[i][0] = Number(filter_dirty_data[i][0]);
+      filter_dirty_data[i][1] = Number(filter_dirty_data[i][1]);
+    }
+    console.log(filter_dirty_data);
 
+    /*
+    //Clean Data Filtering
+    var filtered_data = [];
+    for(i = 0;i<data.length;i++){
 
+      if(data[i][3] >= 20){
+        filtered_data.push(data[i])
+      }
+    }
+    console.log(filtered_data);*/
 
     /* =====================
 
@@ -90,13 +131,22 @@
       maxZoom: 20,
       ext: 'png'
     }).addTo(map);
+ 
+    /*
+    Adding Markers for Clean Data
+    for (i = 0; i < filtered_data.length; i++){
+      console.log(filtered_data[i]);
+      L.marker([filtered_data[i][1],filtered_data[i][0]]).bindPopup(filtered_data[i][2]).addTo(map)
+      console.log('marker added')
+    }
+  */
 
-    /* =====================
-
-    Start code to add markers to map
-
-    ===================== */
-
+    //Adding Markers for Dirty Data
+    for (i = 0; i < filter_dirty_data.length; i++){
+      console.log(filter_dirty_data[i]);
+      L.marker([filter_dirty_data[i][1],filter_dirty_data[i][0]]).bindPopup(filter_dirty_data[i][2]).addTo(map)
+      console.log('marker added')
+    }
 
 
     /* =====================
