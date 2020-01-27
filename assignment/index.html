@@ -57,29 +57,62 @@
        Remember: functions are meant to facilitate code comprehension and reuse. Try
        your best to use them to organize your code.
       ===================== */
+      
+    var jsonToCsv = function(json) { 
+        console.log(json); 
+        let a = json;
+        //Initalize the array that will contain the information in the JSON file
+        var arr = [['LNG','LAT','OBJECTID','NAME','ORGANIZATION','ZIP','PHONE','WEBSITE','DENTAL_PHONE','FULL_ADDRESS'],[],[],[],[],[],[],[],[],[],[]];
+        //Iterate through the JSON file and push the elements to the respective array 
+        for(i=0;i<a.length;i++){
+          //console.log(a[i]);
+          arr[1].push(a[i].LNG);
+          arr[2].push(a[i].LAT);
+          arr[3].push(a[i].OBJECTID);
+          arr[4].push(a[i].NAME);
+          arr[5].push(a[i].ORGANIZATION);
+          arr[6].push(a[i].ZIP);
+          arr[7].push(a[i].PHONE);
+          arr[8].push(a[i].WEBSITE);
+          arr[9].push(a[i].DENTAL_PHONE);
+          arr[10].push(a[i].FULL_ADDRESS);
+        }
+        console.log(arr);
+        return arr;
+      };
 
+    //Creating Tooth Icon 
+    var toothIcon = L.icon({
+      iconUrl: 'images/tooth-solid.png',
+      iconSize:     [38, 39], // size of the icon
+      shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
 
-      /* =====================
+    var addMarkers = function(map, arr) {
+        var len = arr[1].length;
+        console.log(arr[6]);
+        //Iterate through returned array created from JSON to CSV function and add markers
+        for (i = 1; i < len; i++){
+            //Check if the Zip Code is in range of accepted values
+            if(arr[6][i] >= 19140 & arr[6][i] <= 19149){
+              //Check if Dental Services are offered, if not then use default icon
+              if(arr[9][i].includes('N/A')){
+                L.marker([arr[2][i],arr[1][i]]).bindPopup(arr[4][i]).addTo(map) 
+              }
+              //If Dental services are offered, icon will be replaced with a tooth
+              else{
+                L.marker([arr[2][i],arr[1][i]],{icon:toothIcon}).bindPopup(arr[4][i]).addTo(map) 
+              }
+            } 
+          }
+      };
 
-      Start code
-
-      ===================== */
-
-      var jsonToCsv = function(json) { console.log(json); };
-
-
-      var addMarkers = function(map) {};
-
-      /* =====================
-
-      End code
-
-      ===================== */
-
-
-      // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
-      addMarkers(map);
+    // `healthCenters` is defined in health_centers.js
+    var arr = jsonToCsv(healthCenters);
+    addMarkers(map,arr);
     </script>
     <!--Your code ends here-->
   </body>
