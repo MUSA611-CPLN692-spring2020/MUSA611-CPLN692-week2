@@ -30,7 +30,30 @@
     Start code
 
     ===================== */
+    // Problem 1
 
+    var sum = 0;
+    for(var i = 0; i < 1000; i++){
+      if(i%3 == 0 || i%5 == 0){
+        sum += i;
+      }
+    }
+    console.log(`Answer to problem 1: ${sum}`);
+
+    // Problem 2
+
+    var sum2 = 0;
+    var a = 1;
+    var b = 2;
+    while(b < 4*Math.pow(10,6)) {
+      if(b%2 == 0){
+        sum2 += b;
+      }
+      b += a;
+      a = b-a;
+    }
+
+    console.log(`Answer to problem 2: ${sum2}`);
 
 
     /* =====================

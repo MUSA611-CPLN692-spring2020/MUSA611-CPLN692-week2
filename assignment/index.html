@@ -65,10 +65,37 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      var jsonToCsv = function(json) {
+        // if json is empty we print out an empty array
+        if(json.length == 0){
+          console.log([]);
+          return;
+        }
+        // Methods Objects.keys and Objects.values taken from Stackexchange.
+        // first entry is column names.
+        // we assume all objects in json have the same keys.
+        console.log(Object.keys(json[0]));
+        json.forEach(
+          obj => {
+            console.log(Object.values(obj));
+          }
+        );
+      };
 
-
-      var addMarkers = function(map) {};
+      var addMarkers = function(map, json) {
+        var filtered = json.filter(
+          obj => {
+            return obj['ZIP'] >= 19140 && obj['ZIP'] <= 19149;
+          }
+        );
+        filtered.forEach(
+          obj => {
+            L.marker(
+              [obj['LAT'], obj['LNG']]
+            ).bindPopup(obj['NAME']).addTo(map);
+          }
+        );
+      }
 
       /* =====================
 
@@ -79,7 +106,7 @@
 
       // `healthCenters` is defined in health_centers.js
       jsonToCsv(healthCenters);
-      addMarkers(map);
+      addMarkers(map, healthCenters);
     </script>
     <!--Your code ends here-->
   </body>

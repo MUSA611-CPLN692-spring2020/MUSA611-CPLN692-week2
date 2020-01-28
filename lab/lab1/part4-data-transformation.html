@@ -62,7 +62,6 @@
 
     ===================== */
 
-    var data = bikeArrayClean;
 
     /* =====================
 
@@ -70,7 +69,33 @@
 
     ===================== */
 
+    var data = bikeArrayClean;
 
+    var filterStations = function(stations, limit){
+      var bigStations = []
+      for(var i = 0; i < stations.length; i++){
+        if (stations[i][3] > limit) {
+          bigStations.push(stations[i]);
+        }
+      }
+      return bigStations;
+    }
+
+    var cleanEntry = function(arr){
+      var clean = arr.slice(0,4);
+      var numIndeces = [0,1,3];
+      var text = '';
+      for(var i = 0; i < numIndeces.length; i++){
+        if(i < clean.length){
+          text = clean[numIndeces[i]];
+          clean[numIndeces[i]] = parseFloat(text.toString().split(" ")[0]);
+        }
+      }
+      return clean
+    }
+
+    data = data.map(cleanEntry);
+    bigStations = filterStations(data, 20);
 
     /* =====================
 
@@ -97,7 +122,11 @@
 
     ===================== */
 
-
+    for(var i = 0; i < bigStations.length; i++){
+      L.marker(
+        [bigStations[i][1], bigStations[i][0]]
+      ).bindPopup(bigStations[i][2]).addTo(map);
+    }
 
     /* =====================
 
