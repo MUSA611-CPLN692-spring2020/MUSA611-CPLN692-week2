@@ -74,17 +74,16 @@
        Step 1: Data preparation
       ==========================*/
 
-      const itemList = ['LNG', 'LAT', 'OBJECTID', 'NAME', 'ORGANIZATION', 'ZIP', 'PHONE', 'WEBSITE', 'DENTAL_PHONE', 'FULL_ADDRESS']
-      let HC_new_arr = [itemList];
+    //  const itemList = ['LNG', 'LAT', 'OBJECTID', 'NAME', 'ORGANIZATION', 'ZIP', 'PHONE', 'WEBSITE', 'DENTAL_PHONE', 'FULL_ADDRESS']
+      let HC_new_arr = [];
 
       for (var i = 0; i < healthCenters.length; i = i + 1 ){  //to loop over each object (each set of health center information) stored in the array healthCenters
-          var temp = []   //to create a temporary array to store the values of key each in healthCenters[i]
-          for (var j = 0; j < itemList.length; j = j + 1) {  //to loop over each key (LNG, LAT, etc) of the element, which is stored in advance in itemList
-            temp.push(healthCenters[i][itemList[j]]) //to store the key's value to the temporary array
-          }
-//          console.log(temp)  //to check we get it right
-          HC_new_arr.push(temp)  // add this temporary array to the newly created array HC_new_arr, in the next iteration, the array is cleared
+          if (i === 0) { // for the first object, store its keys first
+              HC_new_arr.push(Object.keys(healthCenters[i]))
+            } else {}
+          HC_new_arr.push(Object.values(healthCenters[i])) // for all the object, store their sets of values as individual arrays 
       }
+
 
       console.log(HC_new_arr)
 
