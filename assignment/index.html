@@ -58,12 +58,29 @@
        your best to use them to organize your code.
       ===================== */
 
+      var newHealth = [];
+      for (let i = 0; i < healthCenters.length; i = i + 1){
+        if (i === 0){
+          newHealth.push (Object.keys(healthCenters[i]))}
+          else{}
+            newHealth.push (Object.values(healthCenters[i]))
+      };
 
-      /* =====================
 
-      Start code
+      for (let j = 1; j < newHealth.length; j = j + 1){
+        L.marker([newHealth[j][1], newHealth[j][0]]).addTo(map);
+      } //marker.bindPopup().openPopup();
 
-      ===================== */
+      const newerHealth = newHealth.filter(function(newHealth){
+        return newHealth[5] >= 19140 && newHealth[5] <= 19149;
+      })
+
+      for (let l = 1; l < newerHelath.length; l = l + 1){
+        L.marker([newerHealth[l][1], newerHealth[l][0]]).addTo(map);
+      } //    marker.bindPopup().openPopup();
+
+
+
 
       var jsonToCsv = function(json) { console.log(json); };
 
@@ -78,7 +95,7 @@
 
 
       // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
+      jsonToCsv(newHealth);
       addMarkers(map);
     </script>
     <!--Your code ends here-->
