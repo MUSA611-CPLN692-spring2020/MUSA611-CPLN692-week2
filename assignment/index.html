@@ -70,6 +70,59 @@
 
       var addMarkers = function(map) {};
 
+      /* ========================
+       Step 1: Data preparation
+      ==========================*/
+
+    //  const itemList = ['LNG', 'LAT', 'OBJECTID', 'NAME', 'ORGANIZATION', 'ZIP', 'PHONE', 'WEBSITE', 'DENTAL_PHONE', 'FULL_ADDRESS']
+      let HC_new_arr = [];
+
+      for (var i = 0; i < healthCenters.length; i = i + 1 ){  //to loop over each object (each set of health center information) stored in the array healthCenters
+          if (i === 0) { // for the first object, store its keys first
+              HC_new_arr.push(Object.keys(healthCenters[i]))
+            } else {}
+          HC_new_arr.push(Object.values(healthCenters[i])) // for all the object, store their sets of values as individual arrays
+      }
+
+
+      console.log(HC_new_arr)
+
+      /* ========================
+       Step 2 & 3: Add and filter markers
+      ==========================*/
+
+      //make a new array where health centers not in zipcode range 19140-19149 are filtered out
+      let HC_new_arr_fil = HC_new_arr.filter(element => {
+        return element[5] >= 19140 & element[5] <= 19149}
+      )
+
+      console.log(HC_new_arr_fil)
+      //add markers
+      for (var i = 1; i < HC_new_arr_fil.length; i++){
+          L.marker([HC_new_arr_fil[i][1], HC_new_arr_fil[i][0]]).addTo(map).bindPopup(HC_new_arr_fil[i][3])
+        }
+
+      /* ========================
+       Step 4: Add icons for health centers providing dental services
+      ==========================*/
+
+      var myIcon = L.icon({
+      iconUrl: 'https://cdn4.iconfinder.com/data/icons/dental-colors-doodle/91/Dental_Doodle_C-14-512.png',
+      iconSize: [38, 38],
+      iconAnchor: [23, 45],
+      popupAnchor: [-3, -76],
+  //    shadowUrl: 'my-icon-shadow.png',
+      shadowSize: [68, 95],
+      shadowAnchor: [22, 94]
+  });
+
+      //add an extra icon to health centers providing dental services
+      for (var i = 1; i < HC_new_arr_fil.length; i++){
+        if (HC_new_arr_fil[i][8] != 'N/A'){
+        L.marker([HC_new_arr_fil[i][1], HC_new_arr_fil[i][0]], {icon: myIcon}).addTo(map).bindPopup(HC_new_arr_fil[i][3])
+      }
+  }
+
       /* =====================
 
       End code

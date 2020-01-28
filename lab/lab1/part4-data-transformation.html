@@ -63,14 +63,19 @@
     ===================== */
 
     var data = bikeArrayClean;
+    console.log(bikeArrayClean[0])
 
     /* =====================
 
     Start code to filter data
 
     ===================== */
-
-
+    newData = []
+    for (i = 0; i < data.length; i = i + 1) {
+      if (data[i][3] > 20){
+        newData.push(data[i])
+      } else {}
+    }
 
     /* =====================
 
@@ -97,7 +102,9 @@
 
     ===================== */
 
-
+    for (i = 0; i < newData.length; i++){
+      L.marker([newData[i][1], newData[i][0]]).addTo(map).bindPopup(newData[i][2]);
+      }
 
     /* =====================
 
