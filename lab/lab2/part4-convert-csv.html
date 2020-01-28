@@ -45,8 +45,12 @@
 
       ===================== */
 
-      // feel free to comment this line out if it is too noisy in your console!
-      console.log(healthCentersCSV)
+      var facilities = healthCentersCSV
+      var splitter = function(x){return x.split(',')}
+      var splitup = facilities.split(';').map(splitter)
+
+      console.log(splitup)
+      console.log(splitup[0])
 
       /* =====================
 
