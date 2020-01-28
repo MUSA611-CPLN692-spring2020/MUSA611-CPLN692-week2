@@ -97,7 +97,11 @@
 
     ===================== */
 
+    var grabpoints = function(x){var coords = [x[1], x[0]]; return coords}
+    var plotpoints = function(x){L.marker(x).addTo(map)}
 
+    var points = data.map(grabpoints)
+    points.map(plotpoints)
 
     /* =====================
 
