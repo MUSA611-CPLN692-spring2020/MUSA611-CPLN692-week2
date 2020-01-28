@@ -91,6 +91,14 @@
       ext: 'png'
     }).addTo(map);
 
+
+    var dataFiltered = [];
+    for (let i = 0; i < bikeArrayClean.length; i = i + 1){
+    if (bikeArrayClean[i][3] > 20){
+        dataFiletered.push (bikeArrayClean[i])
+    } L.marker (dataFiletered);
+}
+
     /* =====================
 
     Start code to add markers to map
