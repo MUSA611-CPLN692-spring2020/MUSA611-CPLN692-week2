@@ -30,15 +30,34 @@
     Start code
 
     ===================== */
+/*
+var list=[];
+for (i=1;i<1000;i++){
+  if (i%5===0 || i%3===0){
+    list.push(i);
+  }
+}
 
+var sum=list.reduce(function(a,b){
+  return a+b;
+},0);
 
+console.log(sum); */
 
-    /* =====================
+var Sum = 0;
+var Num1 = 1;
+var Num2 = 2;
+var lastNum = 0;
 
-    End code
+while (lastNum < 4000000) {
+    if (Num2%2===0){
+        Sum+=Num2;
+    }
+    lastNum = Num1 + Num2;
+    Num1 = Num2;
+    Num2 = lastNum;
+}
 
-    ===================== */
+console.log(Sum);
 
-    </script>
-  </body>
 </html>

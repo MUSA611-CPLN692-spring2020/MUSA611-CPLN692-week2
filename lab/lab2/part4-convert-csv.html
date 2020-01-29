@@ -41,12 +41,21 @@
 
       /* =====================
 
-      Start code
+      var wordlist=healthCentersCSV.split(;);
+
 
       ===================== */
 
       // feel free to comment this line out if it is too noisy in your console!
-      console.log(healthCentersCSV)
+var wordlist=healthCentersCSV.split(';');
+
+var newcsv=[];
+for (var i=0;i<wordlist.length;i++){
+  var list = wordlist[i].split(',');
+  newcsv.push(list);
+}
+
+console.log(newcsv);
 
       /* =====================
 

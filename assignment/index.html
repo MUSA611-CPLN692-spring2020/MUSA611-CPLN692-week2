@@ -64,11 +64,57 @@
       Start code
 
       ===================== */
+    //Part 1. json to csv
+      var jsonToCsv = function(healthCenters){
+    //Get list of keys
+      var keylist=Object.keys(healthCenters[0])
+    //Create an empty list to store
+      var healthCsv=[];
+      healthCsv.push(keylist);
+    //Get list of values
+      for (var i=0;i<healthCenters.length;i++){
+        var valuelist=Object.values(healthCenters[i])
+      healthCsv.push(valuelist);
+      }
+    return healthCsv;
+    }
 
-      var jsonToCsv = function(json) { console.log(json); };
+//Create a new list including the CSV by calling jsonToCsv function
+var newList=jsonToCsv(healthCenters);
+
+//Part 2. Add marker
+
+//Customize icons for locations that offer dental services
+var dentalIcon = L.icon({
+  iconUrl: 'https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png',
+    iconSize: [35, 50],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    shadowUrl: 'https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png',
+    shadowSize: [35, 50],
+    shadowAnchor: [22, 94]
+});
+
+//Add marker function
+    var addMarkers = function(map)
+    {
+      for(i=1; i<newList.length;i++)
+      {
+        if (newList[i][5]<= 19149 && newList[i][5]>= 19140) //Filter out the entries not in the range 19140-19149
+        {
+          if(newList[i][8]!== "N/A")
+          {
+            L.marker([newList[i][1], newList[i][0]],{icon: dentalIcon}).bindPopup(newList[i][3]).addTo(map);
+          }
+          else
+          {
+            L.marker([newList[i][1], newList[i][0]]).bindPopup(newList[i][3]).addTo(map);
+          }
+        }
+      }
+    };
 
 
-      var addMarkers = function(map) {};
 
       /* =====================
 

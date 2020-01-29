@@ -69,6 +69,13 @@
     Start code to filter data
 
     ===================== */
+var qualifiedstations=[];
+
+for (var i=0;i<data.length;i++){
+  if (data[i][3] > 20){
+    qualifiedstations.push(data[i]);
+  }
+}
 
 
 
@@ -97,7 +104,10 @@
 
     ===================== */
 
-
+for (var j=0; j<qualifiedstations.length; j++){
+  L.marker([qualifiedstations[j][1],qualifiedstations[j][0]]).
+    bindPopup(qualifiedstations[j][2]).addTo(map);
+}
 
     /* =====================
 
