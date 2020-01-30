@@ -44,15 +44,33 @@
       Start code
 
       ===================== */
-
-      // feel free to comment this line out if it is too noisy in your console!
       console.log(healthCentersCSV)
 
-      /* =====================
+      var rows= healthCentersCSV.split(';')
+      console.log(rows)
+
+
+      var holder=[];
+      for (var i=0;i<rows.length;i++){
+        holder.push(rows[i].split(","));
+      }
+
+      console.log(holder)
+
+      // feel free to comment this line out if it is too noisy in your console!
+
+
+/* =====================
 
       End code
 
       ===================== */
+
+/* =====================
+    for (var i=0;i<rows.length;i++){
+      rows[i].split(',');
+      };
+===================== */
     </script>
   </body>
 </html>

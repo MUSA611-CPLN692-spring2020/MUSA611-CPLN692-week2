@@ -53,8 +53,8 @@
     ===================== */
 
     var map = L.map('map', {
-      center: [39.9522, -75.1639],
-      zoom: 14
+      center: [39.953829, -75.188668],
+      zoom: 15
     });
 
     var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
@@ -70,10 +70,13 @@
     Start code
 
     ===================== */
+    var restaurantData=[39.953829, -75.188668,"shakeshack"]
+    L.marker([39.953829, -75.188668]).addTo(map);
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    var restaurantData=[[39.953829, -75.188668,"shakeshack"],[39.954158, -75.189033,"zavino"],[39.953730, -75.192960,"whitedogcafe"]]
+    for (var i=0;i< restaurantData.length;i++){
+          L.marker([restaurantData[i][0], restaurantData[i][1]]).addTo(map);
+    }
 
     /* =====================
 
