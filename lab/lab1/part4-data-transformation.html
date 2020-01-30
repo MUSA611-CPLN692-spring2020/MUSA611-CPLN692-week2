@@ -62,14 +62,25 @@
 
     ===================== */
 
-    var data = bikeArrayClean;
+    var data = bikeArrayDirty;
 
     /* =====================
 
     Start code to filter data
 
     ===================== */
-
+    dataFiltered = [];
+    for (i = 0; i < data.length; i++) {
+      {
+        str = data[i][data[i].length - 1];
+        if (str.includes(' stations')) {
+          numdoc = Number(str.substring(0, str.length - 8));
+          if (numdoc > 20) {
+            dataFiltered.push(data[i]);
+        }
+      }
+    }
+  }
 
 
     /* =====================
@@ -97,7 +108,10 @@
 
     ===================== */
 
-
+    for (i = 0; i < dataFiltered.length; i++) {
+      resmarker = L.marker([dataFiltered[i][1], dataFiltered[i][0]]).addTo(map);
+      resmarker.bindPopup(dataFiltered[i][2]).openPopup();
+    }
 
     /* =====================
 
