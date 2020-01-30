@@ -93,7 +93,7 @@
         for (var i = 0; i < healthCenters.length;i++){
           var healthCenter = healthCenters[i];
           if (healthCenter["ZIP"] >= 19140 && healthCenter["ZIP"] <= 19149){
-            L.marker([healthCenter["LAT"],healthCenter["LNG"]]).addTo(map);
+            L.marker([healthCenter["LAT"],healthCenter["LNG"]]).bindPopup(healthCenter["NAME"]).openPopup().addTo(map);
           }
         }
 
