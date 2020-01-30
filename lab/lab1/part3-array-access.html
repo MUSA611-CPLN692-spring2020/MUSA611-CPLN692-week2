@@ -81,6 +81,13 @@
 
     ===================== */
 
+    var restaurantData = [[35.96, -75.15, 'market'], [35.94, -75.17, 'mcdonald'], [39.95, -75.17, 'shack'];
+    for (let i = 0; i < restaurantData.length; i++){
+      L.marker([restaurantData[i][0], restaurantData[i][1], restaurantData[i][2]].addTo(map));
+    }
+    restaurantData.push([34, 50, 'res1'], [35, 51, 'res2']);
+
+
     </script>
   </body>
 </html>
