@@ -22,6 +22,7 @@
         center: [39.9522, -75.1639],
         zoom: 14
       });
+
       var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: 'abcd',
@@ -29,6 +30,7 @@
         maxZoom: 20,
         ext: 'png'
       }).addTo(map);
+
     </script>
     <script>
       /* =====================
@@ -65,17 +67,55 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      var valueHolder = [];
+      var filterArray = [];
+      var jsonToCsv = function(json) {
+        // put all key in an array
+        var firstObject = json[0];
+        var keyHolder = Object.keys(firstObject);
+        for (i=0; i < json.length; i = i+1){
+          valueHolder.push(Object.values(json[i]));
+        }
+        valueHolder.unshift(keyHolder);
+        // reorder the array to make it in [LAT, LNG]
+        for (i=0; i < valueHolder.length; i = i+1){
+          var tmp = valueHolder[i][0];
+          valueHolder[i][0] = valueHolder[i][1];
+          valueHolder[i][1] = tmp;
+        }
+        console.log(valueHolder);
+        // filter zip code
+        for (i=1; i < valueHolder.length; i = i+1){
+          if (valueHolder[i][5] >= 19140 && valueHolder[i][5] <= 19149){
+            filterArray.push(valueHolder[i]);
+          }
+        }
+        console.log(filterArray);
+      };
 
+      // customize icon
+      var dentalIcon = L.icon({
+        iconUrl: 'dentalicon.png',
+        iconSize: [30, 30], // size of the icon
+        shadowSize: [50, 64]
+      });
 
-      var addMarkers = function(map) {};
+      // add markers to map and add popups
+      var addMarkers = function(map) {
+        for (i=1; i < filterArray.length; i = i+1){
+          if (filterArray[i][3].includes('Dental') == true ){
+            L.marker([filterArray[i][0], filterArray[i][1]], {icon: dentalIcon}).addTo(map).bindPopup(filterArray[i][3]);
+          } else {
+            L.marker([filterArray[i][0], filterArray[i][1]]).addTo(map).bindPopup(filterArray[i][3]);
+          }
+        }
+      };
 
       /* =====================
 
       End code
 
       ===================== */
-
 
       // `healthCenters` is defined in health_centers.js
       jsonToCsv(healthCenters);
