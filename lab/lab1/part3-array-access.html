@@ -71,9 +71,14 @@
 
     ===================== */
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+
+
+    var restaurantData = [[39.953038, -75.192572, 'restaurant1'], [39.954991, -75.20251, 'restaurant2'], [39.953708, -75.188600, 'restaurant3'],
+  [39.954619, -75.195094, 'restaurant4'], [39.953044, -75.192231, 'restaurant5']];
+    for (i = 0; i < restaurantData.length; i++) {
+      resmarker = L.marker([restaurantData[i][0], restaurantData[i][1]]).addTo(map);
+      resmarker.bindPopup(restaurantData[i][2]).openPopup();
+    }
 
     /* =====================
 

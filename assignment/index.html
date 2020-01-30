@@ -65,10 +65,39 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      var jsonToCsv = function(json) {
+        var holder = [];
+        holder[0] = Object.keys(json[0]);
+        for (var i = 0; i < json.length; i++) {
+          holder[i + 1] = Object.values(json[i]);
+        }
+        return holder};
 
+      var myIcon = L.icon({
+        iconUrl: 'images/hospital.png',
+        iconSize: [25, 25],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76]
+      });
 
-      var addMarkers = function(map) {};
+      var addMarkers = function(map, array) {
+        for (var i = 1; i < array.length; i++) {
+          zipcode = array[i][5];
+          if (19140 <= zipcode && zipcode <= 19149) {
+            long = array[i][0];
+            lat = array[i][1];
+            label = array[i][3];
+            dental = array[i][8];
+            if (dental != 'N/A' && dental != 'N/A ') {
+              healthcenter = L.marker([lat, long], {icon: myIcon}).addTo(map);
+              healthcenter.bindPopup(label).openPopup();
+            } else {
+              healthcenter = L.marker([lat, long]).addTo(map);
+              healthcenter.bindPopup(label).openPopup();
+            }
+          }
+        }
+      };
 
       /* =====================
 
@@ -78,8 +107,8 @@
 
 
       // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
-      addMarkers(map);
+      healthcenter_array = jsonToCsv(healthCenters);
+      addMarkers(map, healthcenter_array);
     </script>
     <!--Your code ends here-->
   </body>
