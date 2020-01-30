@@ -70,10 +70,19 @@
     Start code
 
     ===================== */
+restaurantData = [[39.44,50.55,"restaurant1"],[38.44,51.55,"restaurant2"],[37.44,52.55,"restaurant3"]]
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+for (i=0;i<restaurantData.length;i=i+1)
+    {
+    L.marker([restaurantData[i][0],restaurantData[i][1]]).addTo(map)
+    }
+
+restaurantData.push([36.44,53.55,"restaurant4"],[35.44,54.44,"restaurant5"])
+for (i=0;i<restaurantData.length;i=i+1)
+    {
+    L.marker([restaurantData[i][0],restaurantData[i][1]]).addTo(map).bindPopup(restaurantData[i][2])
+    }
+    
 
     /* =====================
 
