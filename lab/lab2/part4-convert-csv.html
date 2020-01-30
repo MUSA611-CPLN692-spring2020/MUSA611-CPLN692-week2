@@ -44,9 +44,17 @@
       Start code
 
       ===================== */
+      rows = healthCentersCSV.split(";");
+
+      holder = []
+      for (i=0; i < rows.length; i = i+1){
+        holder.push(rows[i].split(","));
+        console.log(holder[i])
+      }
+
 
       // feel free to comment this line out if it is too noisy in your console!
-      console.log(healthCentersCSV)
+      //console.log(healthCentersCSV)
 
       /* =====================
 

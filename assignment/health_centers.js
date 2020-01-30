@@ -1,4 +1,5 @@
 // Preloaded healthcenter JSON
+// the changes
 var healthCenters = [
   {
     "LNG":-75.16472099534634,
