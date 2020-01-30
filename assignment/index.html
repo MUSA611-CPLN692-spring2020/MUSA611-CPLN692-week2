@@ -65,20 +65,16 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
-
       var holder = []
       for (i = 0; i < healthCenters.length; i++) {
         holder.push(Object.values(healthCenters[i]));
       }
       console.log(holder);
 
-      var addMarkers = function(map) {};
-
       for (i = 0; i < holder.length; i++) {
         ref = holder[i];
         if (ref[5] >= 19140 && ref[5] <= 19149) {
-          L.marker([ref[1], ref[0]]).addTo(map);
+          L.marker([ref[1], ref[0]]).addTo(map).bindPopup(ref[3]).openPopup();
         }
       }
 
@@ -88,10 +84,6 @@
 
       ===================== */
 
-
-      // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
-      addMarkers(map);
     </script>
     <!--Your code ends here-->
   </body>
