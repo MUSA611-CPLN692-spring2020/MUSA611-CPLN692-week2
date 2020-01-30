@@ -19,8 +19,8 @@
     <!--Your code starts here-->
     <script>
       var map = L.map('map', {
-        center: [39.9522, -75.1639],
-        zoom: 14
+        center: [39.9800, -75.1639],
+        zoom: 12
       });
       var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -64,11 +64,40 @@
       Start code
 
       ===================== */
+      var jsonToCsv = function(json) {
+        console.log(json)
 
-      var jsonToCsv = function(json) { console.log(json); };
+        let holder=[];
+        holder.push(Object.keys(json[0]));
+        for (var i=0;i<json.length;i++){
+          holder.push(Object.values(json[i]))
+        }
+        console.log(holder)
+      };
 
+      var myIcon = L.icon({
+          iconUrl: 'images/dental.png',
+          iconSize: [42, 42],
+          iconAnchor: [22, 94],
+          popupAnchor: [-3, -76],
+          //shadowUrl: 'marker-shadow.png',
+          //shadowSize: [68, 95],
+          //shadowAnchor: [22, 94]
+      });
 
-      var addMarkers = function(map) {};
+      var addMarkers = function(map) {
+        for (var i=0;i<healthCenters.length;i++) {
+          if(healthCenters[i]["ZIP"]>=19140 && healthCenters[i]["ZIP"]<=19149){
+            if(healthCenters[i]["DENTAL_PHONE"]!=="N/A"){
+              L.marker([healthCenters[i]["LAT"], healthCenters[i]["LNG"]],{icon: myIcon}).addTo(map).
+              bindPopup(healthCenters[i]["NAME"]);
+            } else{
+              L.marker([healthCenters[i]["LAT"], healthCenters[i]["LNG"]]).addTo(map).
+              bindPopup(healthCenters[i]["NAME"]);
+            }
+          }
+        }
+      };
 
       /* =====================
 
@@ -80,6 +109,7 @@
       // `healthCenters` is defined in health_centers.js
       jsonToCsv(healthCenters);
       addMarkers(map);
+
     </script>
     <!--Your code ends here-->
   </body>

@@ -62,7 +62,6 @@
 
     ===================== */
 
-    var data = bikeArrayClean;
 
     /* =====================
 
@@ -70,7 +69,20 @@
 
     ===================== */
 
+    var data = bikeArrayClean;
+    var dataFiltered=function(data){
+      var newdata=[];
+      var j=0;
+      for(var i=0;i<data.length;i++){
+        if(data[i][3]>20){
+          newdata[j++]=data[i];
+        }
+      }
+      return newdata;
+    }
 
+    var newarray=dataFiltered(data);
+    console.log(newarray)
 
     /* =====================
 
@@ -97,7 +109,9 @@
 
     ===================== */
 
-
+    for (var m=0;m< newarray.length;m++){
+          L.marker([newarray[m][1], newarray[m][0]]).addTo(map);
+    }
 
     /* =====================
 
