@@ -70,6 +70,12 @@
 
     ===================== */
 
+var newArray = []
+for (i=0;i<bikeArrayClean.length;i=i+1){
+ if(bikeArrayClean[i][3]>20)
+ {newArray.push(bikeArrayClean[i])}
+}
+
 
 
     /* =====================
@@ -96,6 +102,10 @@
     Start code to add markers to map
 
     ===================== */
+    for (i=0;i<newArray.length;i=i+1)
+        {
+        L.marker([newArray[i][1],newArray[i][0]]).addTo(map)
+        }
 
 
 

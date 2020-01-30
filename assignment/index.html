@@ -65,10 +65,37 @@
 
       ===================== */
 
+// Step 1
       var jsonToCsv = function(json) { console.log(json); };
-
-
       var addMarkers = function(map) {};
+
+      let healthArray=[];
+      for (let i=0; i<healthCenters.length;i++){
+        if (i===0){healthArray.push(Object.keys(healthCenters[i]))}
+        else{}
+          healthArray.push(Object.values(healthCenters[i]))
+      }
+
+// Step 2 This part of code has been comment out because duplicated marker will be shown from step 3
+//      for (let j=1;j<healthArray.length;j=j+1){
+//          L.marker([healthArray[j][1],healthArray[j][0]]).addTo(map).bindPopup(healthArray[j][3])
+//        }
+
+// Step 3
+let filtarray = []
+
+      for (let y=1; y<healthArray.length;y++){
+       filtarray = healthArray.filter(eachr=>{
+        return eachr[5]>=19140 && eachr[5]<=19149;
+      });
+    }
+
+console.log(filtarray);
+
+
+    for (let u=1; u<filtarray.length;u++){
+        L.marker([filtarray[u][1],filtarray[u][0]]).addTo(map).bindPopup(filtarray[u][3])
+      }
 
       /* =====================
 
@@ -79,6 +106,7 @@
 
       // `healthCenters` is defined in health_centers.js
       jsonToCsv(healthCenters);
+      jsonToCsv(healthArray);
       addMarkers(map);
     </script>
     <!--Your code ends here-->
