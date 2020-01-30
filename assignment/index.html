@@ -66,20 +66,17 @@
             newHealth.push (Object.values(healthCenters[i]))
       };
 
-
-      for (let j = 1; j < newHealth.length; j = j + 1){
-        L.marker([newHealth[j][1], newHealth[j][0]]).addTo(map);
-      } //marker.bindPopup().openPopup();
+      /*for (let j = 1; j < newHealth.length; j = j + 1){
+        L.marker([newHealth[j][1], newHealth[j][0]]).addTo(map).bindPopup(newHealth[j][3]);
+      }*/
 
       const newerHealth = newHealth.filter(function(newHealth){
         return newHealth[5] >= 19140 && newHealth[5] <= 19149;
       })
 
-      for (let l = 1; l < newerHelath.length; l = l + 1){
-        L.marker([newerHealth[l][1], newerHealth[l][0]]).addTo(map);
-      } //    marker.bindPopup().openPopup();
-
-
+      for (let l = 1; l < newerHealth.length; l = l + 1){
+        L.marker([newerHealth[l][1], newerHealth[l][0]]).addTo(map).bindPopup(newerHealth[l][3]);
+      }
 
 
       var jsonToCsv = function(json) { console.log(json); };
