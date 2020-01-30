@@ -64,21 +64,42 @@
       Start code
 
       ===================== */
+//
+      var jsonToCsv = function(jsonArray) {
+        var csv = [];
+        var keys = Object.keys(jsonArray[0]);
 
-      var jsonToCsv = function(json) { console.log(json); };
+        csv.push(keys);
 
+        for (var i = 0; i < jsonArray.length; i++){
+          var jsonItem = jsonArray[i];
+          var row = [];
 
-      var addMarkers = function(map) {};
+          for (var k = 0; k < keys.length; k++){
+            var columnKey = keys[k];
 
+            row.push(jsonItem[columnKey])
+          }
+          csv.push(row);
+        }
+        return csv;
+      };
+
+      var addMarkers = function(map) {
+        for (var i = 0; i < healthCenters.length; i++){
+          var healthCenter = healthCenters[i];
+          if (healthCenter["ZIP"] >= 19140 && healthCenter["ZIP"] <= 19149) {
+            L.marker([healthCenter["LAT"], healthCenter["LNG"]]).addTo(map);
+          }
+        }
+      };
       /* =====================
-
       End code
-
       ===================== */
 
-
       // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
+      var csvVals = jsonToCsv(healthCenters);
+      console.log(csvVals);
       addMarkers(map);
     </script>
     <!--Your code ends here-->
