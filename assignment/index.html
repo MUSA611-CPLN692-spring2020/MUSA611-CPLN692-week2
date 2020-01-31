@@ -65,10 +65,67 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      var jsonToCsv = function(json) { 
+        console.log(json); 
+        var csv_format = [];
+        var header = json[0];
+        var the_keys = Object.keys(header);
+        csv_format.push(the_keys);
+        for (var i=0; i<json.length; i++){
+          var row = json[i];
+          var entries = Object.values(row);
+          csv_format.push(entries);
+        }
+        return csv_format
+      };
 
+      // all columns separated into diff fields and all lines as separate arrays
+      var addMarkers = function(map, json) {
+        var data_csv = jsonToCsv(json);
+        var keyNames = data_csv[0];
+        var LAT_index = keyNames.indexOf("LAT");
+        var LNG_index =keyNames.indexOf("LNG");
+        var NAME_index = keyNames.indexOf("NAME");
+        var ZIP_index = keyNames.indexOf("ZIP");
+        var dental_index = keyNames.indexOf("DENTAL_PHONE");
 
-      var addMarkers = function(map) {};
+        //create new icon for dental spots 
+        var dentalIcon = L.icon({
+          iconUrl: 'images/marker-icon-dental.png',
+          iconSize: [38, 40],
+          iconAnchor: null,
+          popupAnchor: [-1,-20],
+          shadowUrl: 'images/marker-shadow.png',
+          shadowSize: [38, 40],
+          shadowAnchor: null
+        });
+
+        // start at index 1, as index 0 are labels
+        for (i=1; i<data_csv.length; i++){
+          // only add if zip code is within range 
+          var zip_code  = data_csv[i][ZIP_index]
+          if(zip_code >= 19140 && zip_code<= 19149){
+            var lat = data_csv[i][LAT_index];
+            var lng = data_csv[i][LNG_index];
+            var label = data_csv[i][NAME_index];
+            var dental = data_csv[i][dental_index];
+            // check if offers dental serivces 
+            // could not use N/A as one location was "N/A " with a space
+            // use length of phone number --> assuming that all in format xxx-xxx-xxxx
+            if(dental.length == 12){
+              // add colored marker 
+              var marker = L.marker([lat, lng], {icon: dentalIcon}).addTo(map);
+              marker.bindPopup("<b>Name: </b>"+label+"<br>Dental phone: "+dental).openPopup();
+            } else {
+              // add normal marker 
+              var marker = L.marker([lat, lng]).addTo(map);
+              marker.bindPopup(label).openPopup();
+            }
+            
+
+          }
+        }
+      };
 
       /* =====================
 
@@ -76,10 +133,9 @@
 
       ===================== */
 
-
       // `healthCenters` is defined in health_centers.js
       jsonToCsv(healthCenters);
-      addMarkers(map);
+      addMarkers(map, healthCenters);
     </script>
     <!--Your code ends here-->
   </body>
