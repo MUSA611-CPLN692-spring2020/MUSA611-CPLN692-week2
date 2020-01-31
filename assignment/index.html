@@ -58,17 +58,53 @@
        your best to use them to organize your code.
       ===================== */
 
-
       /* =====================
 
       Start code
 
       ===================== */
 
+
+      var healthCentersList = Array(healthCenters.length+1);
+      for(i = 0; i<healthCenters.length; i++){
+        var str = Object.entries(healthCenters[i]).toString();
+        var words = str.split(',');
+        var Length = words.length+1;
+        var keys = new Array();
+        var entries = new Array();
+        for(j = 0; j<words.length; j++){
+          if(j%2 == 0){
+            keys.push(words[j]);
+          }else{
+            entries.push(words[j]);
+          }
+        }
+        healthCentersList[0] = keys;
+        healthCentersList[i+1] = entries;
+      }
+
+      console.log(healthCentersList);
+
       var jsonToCsv = function(json) { console.log(json); };
 
 
-      var addMarkers = function(map) {};
+      var addMarkers = function(map) {
+        var myIcon = L.icon({
+          iconUrl: './images/dentel.png',
+          iconSize: [50, 50],
+          iconAnchor: [22, 94],
+          popupAnchor: [-3, -76],
+        });
+        for(i = 1; i<healthCentersList.length; i++){
+          if(healthCentersList[i][5]>=19140 && healthCentersList[i][5]<=19149 && healthCentersList[i][8] == "N/A"){
+            L.marker([healthCentersList[i][1], healthCentersList[i][0]]).addTo(map).bindPopup(healthCentersList[i][3]).openPopup();
+          }
+          else if(healthCentersList[i][5]>=19140 && healthCentersList[i][5]<=19149 && healthCentersList[i][8] != "N/A"){
+            L.marker([healthCentersList[i][1],healthCentersList[i][0]], {icon: myIcon}).addTo(map).bindPopup(healthCentersList[i][3]).openPopup();
+          }
+        }
+      };
+
 
       /* =====================
 
