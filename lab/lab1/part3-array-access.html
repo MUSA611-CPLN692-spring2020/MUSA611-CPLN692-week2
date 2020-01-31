@@ -51,6 +51,7 @@
     to the Leaflet documentation for instructions on adding a popup: http://leafletjs.com/reference.html#popup
 
     ===================== */
+    var restaurantData = [[114.3,30.5,"Wuhan"],[109.5,30.3,"Enshi"],[113.9,30.9,"Xiaogan"],[111.2,30.7,"Yichang"]]
 
     var map = L.map('map', {
       center: [39.9522, -75.1639],
@@ -65,11 +66,9 @@
       ext: 'png'
     }).addTo(map);
 
-    /* =====================
 
-    Start code
 
-    ===================== */
+
 
     L.marker([0, 0]).addTo(map);
     L.marker([0, 0]).addTo(map);
