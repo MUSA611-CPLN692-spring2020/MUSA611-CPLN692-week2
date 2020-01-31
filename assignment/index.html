@@ -58,27 +58,68 @@
        your best to use them to organize your code.
       ===================== */
 
+/* wondering why this does not work?
+      var jsonToCsv = function(json) {
+        var holder=[];
+        holder[0]=Object.keys(json[0]);
+        for (var i =0; i<json.length; i++){
+          holder[i++].push(Object.values(json[i])); //i++ does not work and push neither
+        }
+          return holder
+      };
 
-      /* =====================
+      var NewhealthCenters=jsonToCsv(healthCenters);
+      console.log(NewhealthCenters);
+===================================*/
 
-      Start code
+// 1.Log a series of arrays to the console
+      var jsonToCsv = function(json) {
+        var holder=[];
+        holder[0]=Object.keys(json[0]);
+        for (var i =0; i<json.length; i++){
+          holder[i+1]=Object.values(json[i]); //i++ does not work and push neither
+        }
+          return holder
+      };
 
-      ===================== */
+      var NewhealthCenters=jsonToCsv(healthCenters);
+      console.log(NewhealthCenters);
+// 2.Put a marker with a popup
+  // define different markers
+  var myIcon = L.icon({
+    iconUrl: 'my-icon.png',
+    iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    shadowUrl: 'my-icon-shadow.png',
+    shadowSize: [68, 95],
+    shadowAnchor: [22, 94]
+  });
 
-      var jsonToCsv = function(json) { console.log(json); };
+  var dental = L.icon({
+      iconUrl: 'https://png.zhaoxi.net/upload/18/01/1111/082eabd383132ee31c0e48f025871049.png',
+      iconSize: [38, 95],
+      iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+      shadowUrl: 'https://png.zhaoxi.net/upload/18/01/1111/082eabd383132ee31c0e48f025871049.png',
+      shadowSize: [68, 95],
+      shadowAnchor: [22, 94]
+  });
 
 
-      var addMarkers = function(map) {};
 
-      /* =====================
+      var addMarkers = function(map) {
+        for (var i=1; i<NewhealthCenters.length;i++){
+          if (NewhealthCenters[i][5]>19140 && NewhealthCenters[i][5]<19149) {
+            if (NewhealthCenters[8]!=='N/A') {
+              L.marker([NewhealthCenters[i][1], NewhealthCenters[i][0]], {icon: myIcon}).bindPopup(NewhealthCenters[i][3]).openPopup().addTo(map);
+            } else {
+              L.marker([[NewhealthCenters[i][1], NewhealthCenters[i][0]]).bindPopup(popupContent[i][3]).openPopup().addTo(map);
+            }
+          }
+        }
+      };
 
-      End code
-
-      ===================== */
-
-
-      // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
       addMarkers(map);
     </script>
     <!--Your code ends here-->
