@@ -58,12 +58,40 @@
        your best to use them to organize your code.
       ===================== */
 
+      // 1. Log a series of arrays representing the heatlth_centers dataset
+      var source =[]
+      source[0] = ['LNG', 'LAT', 'OBJECTID', 'NAME','ORGANIZATION', 'ZIP', 'PHONE', 'WEBSITE','DENTAL_PHONE', 'FULL_ADDRESS'];
+      for (var i = 0, j = healthCenters.length; i < j; i++){
+        source[i + 1] = [healthCenters[i]['LNG'],healthCenters[i]['LAT'],healthCenters[i]['OBJECTID'],healthCenters[i]['NAME'],
+        healthCenters[i]['ORGANIZATION'],healthCenters[i]['ZIP'],healthCenters[i]['PHONE'],healthCenters[i]['WEBSITE'],
+        healthCenters[i]['DENTAL_PHONE'],healthCenters[i]['FULL_ADDRESS']];}
+      alert(source.join('|'))
+      console.log(source)
 
-      /* =====================
+      // 2. Put markers of each health center and popup.
+      for(var i=1; i<source.length; i++){
+         L.marker([source[i][1],source[i][0]]).addTo(map).bindPopup(source[i][3]).openPopup()
+      }
 
-      Start code
+      // 3. Extract markers with zipcode ranging from 19140 to 19149
+      var zip_marker = source.filter(zip =>{
+        return (zip[5] > 19140 && zip[5] < 19149)
+      })
+      console.log(zip_marker)
 
-      ===================== */
+      // Download the dental icon png and make my own icon.
+      var myIcon = L.icon({
+        iconUrl: 'dental.png',
+        iconSize: [32, 52],
+        iconAnchor: [16, 52],
+        popupAnchor: [1, -50]
+      });
+
+      // put new icon markers of each dental locations
+      for(var i=0; i<zip_marker.length; i++){
+         L.marker([zip_marker[i][1],zip_marker[i][0]],{icon: myIcon}).addTo(map).bindPopup(zip_marker[i][3]).openPopup()
+      }
+
 
       var jsonToCsv = function(json) { console.log(json); };
 

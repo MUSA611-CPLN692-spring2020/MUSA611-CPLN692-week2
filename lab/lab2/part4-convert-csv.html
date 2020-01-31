@@ -39,11 +39,14 @@
 
       ===================== */
 
-      /* =====================
-
-      Start code
-
-      ===================== */
+      const split = healthCentersCSV.split(';')
+      for (var i = 0; i < split.length;i=i+1){
+           split[i].split(',')
+      }
+      var holder=[]
+      for (var i =0; i<split.length;i=i+1){
+          if(split[i].length>1){holder.push(split[i].split(','))}
+      }
 
       // feel free to comment this line out if it is too noisy in your console!
       console.log(healthCentersCSV)
