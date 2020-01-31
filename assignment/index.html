@@ -65,11 +65,28 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      //var jsonToCsv = function(json) { console.log(json); };
+      let wordlist = healthCentersCSV.split(';');
+      let newcsv = [];
+      for (i=0; i< wordlist.length; i++){
+        let list = wordlist [i].split(';');
+        newcsv.push(list);
+      }
 
+      console.log(newcsv)
 
-      var addMarkers = function(map) {};
+      let jsonToCsv = function(newcsv)
+      //var addMarkers = function(map) {}
+      let addMarkers = function(map) {
+        for (i=0; i <healthCenters.length; i++) {
+          if (healthCenter ZIP >= 19140 && healthCenter ZIP <= 19149) {
+            L.marker ( [healthCenter["LAT"], healthCenter ["LNG"]]).addTo(map)
+          }
+        }
+      }
 
+      let marker = jsonToCsv(healthCenters)
+      console.log(marker)
       /* =====================
 
       End code
