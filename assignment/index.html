@@ -65,11 +65,46 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      var jsonToCsv = function(healthCenters) {
+        var holder = [];
+        holder[0] = Object.keys(healthCenters[0]);
+        for (var i = 0; i < healthCenters.length; i++) {
+              holder[i + 1] = Object.values(healthCenters[i]);
+        }
+          return holder};
+    var healthcenternew = jsonToCsv(healthCenters)
+    console.log(healthcenternew)
 
+    var myIcon = L.icon({
+        iconUrl: 'my-icon.png',
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+        shadowUrl: 'my-icon-shadow.png',
+        shadowSize: [68, 95],
+        shadowAnchor: [22, 94]
+    });
 
-      var addMarkers = function(map) {};
+   var dental = L.icon({
+  iconUrl: 'https://cdn0.iconfinder.com/data/icons/medical-and-health-37/32/Icon9-teeth-512.png',
+  iconSize: [28, 75],
+  iconAnchor: [22, 94],
+  popupAnchor: [-3, -76],
+  shadowUrl: 'https://cdn0.iconfinder.com/data/icons/medical-and-health-37/32/Icon9-teeth-512.png',
+  shadowSize: [28, 75],
+  shadowAnchor: [22, 94]
+  });
 
+      var addMarkers = function(map) {
+        for( var i=1; i < healthcenternew.length;i++){
+          if (healthcenternew[i][5] <= 19149 && healthcenternew[i][5] >= 19140 ) {
+            if(healthcenternew[i][8]!== "N/A"){
+              L.marker([healthcenternew[i][1], healthcenternew[i][0]], {icon: dental}).bindPopup(healthcenternew[i][3]).addTo(map);
+            } else {L.marker([healthcenternew[i][1], healthcenternew[i][0]],{icon: myIcon}).bindPopup(healthcenternew[i][3]).addTo(map);
+            }
+        }
+      };
+  }
       /* =====================
 
       End code
