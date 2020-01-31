@@ -65,10 +65,37 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
-
-
-      var addMarkers = function(map) {};
+      var jsonToCsv = function(json) {
+        //console.log(json);
+        cleanHC = [["LNG","LAT","OBJECTID","NAME","ORGANIZATION","ZIP","PHONE","WEBSITE","DENTAL_PHONE","FULL_ADDRESS"]];
+        for (var i=0;i<json.length;i=i+1){
+          cleanHC.push([json[i]["LNG"],json[i]["LAT"],json[i]["OBJECTID"],
+          json[i]["NAME"],json[i]["ORGANIZATION"],json[i]["ZIP"],
+          json[i]["PHONE"],json[i]["WEBSITE"],json[i]["DENTAL_PHONE"],
+          json[i]["FULL_ADDRESS"]]);
+        }
+        return cleanHC
+      };
+      var myIcon = L.icon({
+        iconUrl: 'images/icons8.png',
+        iconSize: [38, 50],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+      //L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);
+      var addMarkers = function(map) {
+        for (let i = 1; i < cleanHC.length; i++) {
+          if (cleanHC[i][5]>=19140 && cleanHC[i][5]<=19149) {
+            if (cleanHC[i][8] !== "N/A") {
+              L.marker(L.latLng(cleanHC[i][1], cleanHC[i][0]),{icon: myIcon}).addTo(map).bindPopup(cleanHC[i][3]).openPopup();
+            } else {
+              L.marker(L.latLng(cleanHC[i][1], cleanHC[i][0])).addTo(map).bindPopup(cleanHC[i][3]).openPopup();
+            }
+          }
+        }
+        return map;
+      };
+      //icon reference <a target="_blank" href="https://icons8.com/icons/set/dental-crown">Dental Crown icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
       /* =====================
 

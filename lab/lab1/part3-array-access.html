@@ -65,21 +65,12 @@
       ext: 'png'
     }).addTo(map);
 
-    /* =====================
+    var restaurantData = [[39.959195,-75.194592, "Chengdu Famous Food"],[39.955176, -75.156785,"Dimsum Garden"],
+    [39.955175, -75.157275, "A La Mousse"],[39.953543, -75.192905, 'Whitedog Cafe'],[39.953544, -75.192430,'Babyblue BBQ']];
+    for (let i =0; i < restaurantData.length; i++) {
+        L.marker(L.latLng(restaurantData[i][0], restaurantData[i][1])).addTo(map).bindPopup(restaurantData[i][2]).openPopup();
+    }
 
-    Start code
-
-    ===================== */
-
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-
-    /* =====================
-
-    End code
-
-    ===================== */
 
     </script>
   </body>

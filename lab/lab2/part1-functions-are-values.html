@@ -58,8 +58,30 @@
        A hint to get you started: functions are often used to label a unit of work (such as
        testing whether or not a value is a string).
       **/
-      for (var i = 0; i < theArray.length, i++) { /* Do stuff here */ }
 
+      function isstring(s) {
+        if (typeof arrayValue === 'string') {         // String case
+          return true;
+        }
+      }
+
+      function isnumber(n) {
+        if (typeof arrayValue === 'number') {  // Number case
+          return true;
+        }
+      }
+
+      for (var i = 0; i < theArray.length; i++) {
+        var arrayValue = theArray[i];
+        if (isstring(arrayValue)) {         // String case
+          yourSum = yourSum + arrayValue.length
+        } else if (isnumber(arrayValue)) {  // Number case
+          yourSum = yourSum + arrayValue
+        } else {                                      // Otherwise
+          console.log("Not sure how to proceed with value:", arrayValue)
+        }
+      }
+      
       /* =====================
 
       End code
