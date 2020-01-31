@@ -65,10 +65,45 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+            var healthCentersList = Array(healthCenters.length+1);
+            for(i = 0; i<healthCenters.length; i=i+1){
+              var str = Object.entries(healthCenters[i]).toString();
+              var rows = str.split(',');
+              var idx = new Array();
+              var att = new Array();
+              for(j = 0; j<rows.length; j++){
+                if(j%2 == 0){
+                  idx.push(rows[j]);
+                }else{
+                  att.push(rows[j]);
+                }
+              }
+              healthCentersList[0] = idx;
+              healthCentersList[i+1] = att;
+            }
+            console.log(healthCentersList);
 
 
-      var addMarkers = function(map) {};
+            var jsonToCsv = function(json) { console.log(json); };
+
+
+            var addMarkers = function(map) {
+              var myIcon = L.icon({
+                iconUrl: './images/download.png',
+                iconSize: [30, 30],
+                iconAnchor: [22, 94],
+                popupAnchor: [-3, -75],
+              });
+              for(i = 0; i<healthCentersList.length; i=i+1){
+                if(healthCentersList[i][5]>=19140 && healthCentersList[i][5]<=19149 && healthCentersList[i][8] == "N/A"){
+                  L.marker([healthCentersList[i][1], healthCentersList[i][0]]).addTo(map).bindPopup(healthCentersList[i][3]).openPopup();
+                }
+                else if(healthCentersList[i][5]>=19140 && healthCentersList[i][5]<=19149 && healthCentersList[i][8] != "N/A"){
+                  L.marker([healthCentersList[i][1],healthCentersList[i][0]], {icon: myIcon}).addTo(map).bindPopup(healthCentersList[i][3]).openPopup();
+                }
+              }
+            };
+
 
       /* =====================
 
