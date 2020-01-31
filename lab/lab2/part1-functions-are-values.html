@@ -58,7 +58,25 @@
        A hint to get you started: functions are often used to label a unit of work (such as
        testing whether or not a value is a string).
       **/
-      for (var i = 0; i < theArray.length, i++) { /* Do stuff here */ }
+
+      var thinking = function(x){
+        if (typeof x === 'string') {
+          return x.length;
+        } else if (typeof x === 'number') {
+          return x;
+        } else {
+          return 0;
+          console.log("Not sure how to proceed with value: " + x);
+        }
+      }
+
+      var doing = function(x){
+        return yourSum = yourSum + x
+      }
+
+      var newSum = theArray.map(thinking).map(doing)
+
+      console.log(newSum)
 
       /* =====================
 

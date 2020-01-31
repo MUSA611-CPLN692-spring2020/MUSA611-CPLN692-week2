@@ -71,9 +71,14 @@
 
     ===================== */
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    var restaurants = [[39.945030, -75.160599], [39.946149, -75.157954]];
+    var restaurants = restaurants.concat([[39.950341, -75.165797], [39.950637, -75.168378]]);
+
+    console.log(restaurants)
+
+    for (i = 0; i < restaurants.length; i = i + 1) {
+      L.marker(restaurants[i]).addTo(map);
+    }
 
     /* =====================
 

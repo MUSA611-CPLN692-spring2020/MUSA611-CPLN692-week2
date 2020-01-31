@@ -5,11 +5,8 @@
     <link rel="stylesheet" href="leaflet.css" />
   </head>
   <body>
-    <!--left panel-->
-    <div style="position:fixed;left:0px;width:400px">
-    </div>
     <!--map-->
-    <div id="map" style="position:fixed;right:0px;left:400px;height:100%;">
+    <div id="map" style="position:fixed;right:0px;left:0px;height:100%;">
     </div>
 
     <!--javascript imports-->
@@ -31,6 +28,7 @@
       }).addTo(map);
     </script>
     <script>
+
       /* =====================
 
       # Week 2 - Assignment
@@ -65,10 +63,39 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
 
+      var data = healthCenters;
+      var jsonToCsv = function(x){console.log(x)};
+/*
+      var grabpoints = function(x){
+          var coords = [x.LAT, x.LNG];
+          var name = x.NAME;
+          return L.marker(coords).bindPopup(name)}
 
-      var addMarkers = function(map) {};
+      var points = data.map(grabpoints)
+      var centers = L.layerGroup(points);
+
+      centers.addTo(map)
+*/
+      let trimmed = data.map(function(x){
+        if (x.ZIP > 19139 && x.ZIP < 19150) {return x}
+        else {return null}
+      });
+
+      trimmed = trimmed.filter(Boolean);
+
+      var addMarkers = function(x){
+        var grabpoints = function(x){
+          var coords = [x.LAT, x.LNG];
+          var name = x.NAME;
+          return L.marker(coords).bindPopup(name)
+        };
+
+        var points = trimmed.map(grabpoints);
+        var centers = L.layerGroup(points);
+
+        centers.addTo(x)
+      };
 
       /* =====================
 
@@ -78,8 +105,9 @@
 
 
       // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
+      jsonToCsv(data);
       addMarkers(map);
+
     </script>
     <!--Your code ends here-->
   </body>
