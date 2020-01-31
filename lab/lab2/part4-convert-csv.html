@@ -46,7 +46,12 @@
       ===================== */
 
       // feel free to comment this line out if it is too noisy in your console!
-      console.log(healthCentersCSV)
+
+      var rows = healthCentersCSV.split(";")
+      var holder = [];
+      for (var i =0;i<rows.length;i = i+1) {
+        if (rows[i].length >1) {holder.push(rows[i].split(","))}
+      }
 
       /* =====================
 
