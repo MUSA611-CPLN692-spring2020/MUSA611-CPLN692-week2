@@ -96,8 +96,8 @@
       var addMarkers = function(map) {
         for (var i = 0; i < healthCenters.length; i=i+1) {
           var healthCenter = healthCenters[i];
-          if(healthCenter["ZIP"] >= 19140 && healthCenter["ZIP"] <= 19149) {
-            L.marker([healthCenter["LAT"], healthCenter["LNG"]]).addTo(map);
+          if (healthCenter["ZIP"] >= 19140 && healthCenter["ZIP"] <= 19149){
+            L.marker([healthCenter["LAT"],healthCenter["LNG"]]).bindPopup(healthCenter["NAME"]).openPopup().addTo(map);
           }
         }
       };
