@@ -1,4 +1,5 @@
 # Open Source Tools for GIS - Week 2
+## Shuchang Dong
 
 *As always: make a copy of this repository to commit changes to*
 

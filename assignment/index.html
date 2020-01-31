@@ -20,7 +20,8 @@
     <script>
       var map = L.map('map', {
         center: [39.9522, -75.1639],
-        zoom: 14
+        zoom: 14,
+        closePopupOnClick: false
       });
       var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -29,11 +30,13 @@
         maxZoom: 20,
         ext: 'png'
       }).addTo(map);
+
     </script>
     <script>
       /* =====================
 
       # Week 2 - Assignment
+      # Name: Shuchang Dong
 
       ## Introduction
 
@@ -58,28 +61,52 @@
        your best to use them to organize your code.
       ===================== */
 
-
-      /* =====================
-
-      Start code
-
-      ===================== */
-
+      // Step1: log an array:
       var jsonToCsv = function(json) { console.log(json); };
+      jsonToCsv(healthCenters);
 
+      // Step2&3: 
 
-      var addMarkers = function(map) {};
+      // Set up icons for healthcenters with dental services
+      var dental = L.icon({
+        iconUrl: 'images/icon2.png',
+        iconSize: [30, 45],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -60],
+      });
 
-      /* =====================
+      // Set up icons for healthcenters without dental services
+      var nodental = L.icon({
+        iconUrl: 'images/icon1.png',
+        iconSize: [40, 33],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -60],
+      });
 
-      End code
-
-      ===================== */
-
+      // Function for adding markers on the map
+      function addMarkers(map,healthCenters) {
+        for(var i=0;i<healthCenters.length;i++){
+          var zip = healthCenters[i].ZIP;
+          // Filter out the points whose zipcode are out of limits
+          if(zip<19149&&zip>19140){
+            var lat = healthCenters[i].LAT;
+            var lon = healthCenters[i].LNG;
+            var name = healthCenters[i].NAME;
+            // Whether the point has dental service
+            if(healthCenters[i].DENTAL_PHONE.includes('N/A')){
+              L.marker([lat,lon],{icon: nodental}).bindPopup(name).openPopup().addTo(map);
+            }
+            else{
+              var dent_num = healthCenters[i].DENTAL_PHONE;
+              L.marker([lat,lon],{icon: dental}).bindPopup(name + '(dental service provided)').openPopup().addTo(map);
+            }
+          }
+        }
+      };
 
       // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
-      addMarkers(map);
+      // jsonToCsv(healthCenters);
+      addMarkers(map,healthCenters);
     </script>
     <!--Your code ends here-->
   </body>
