@@ -48,6 +48,16 @@
       // feel free to comment this line out if it is too noisy in your console!
       console.log(healthCentersCSV)
 
+
+      var splitedList = healthCentersCSV.split(';');
+      var holder = []
+      for (i = 0; i < splitedList.length; i++) {
+        holder.push(splitedList[i].split(','));
+      }
+
+      for (i = 0; i < holder.length; i++) {
+        console.log(holder[i]);}
+
       /* =====================
 
       End code

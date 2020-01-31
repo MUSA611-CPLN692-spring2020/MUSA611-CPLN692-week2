@@ -65,15 +65,24 @@
       ext: 'png'
     }).addTo(map);
 
-    /* =====================
+    var restaurantData = ([39.955524, -75.201398, 'Dim Sum House'], [39.954652, -75.194689, 'Spread Bagelry'], [39.947889, -75.222733, 'Dock Street Brewery'])
 
-    Start code
+    for (i = 0; i < 4; i++) {
+        ref = restaurantData[i];
+        lat = ref[0];
+        lng = ref[1];
+        L.marker([lat, lng]).addTo(map);
+    }
 
-    ===================== */
+    var fmap = function (arr,func) {
+      for (var i = 0; i < arr.length; i++) {
+        console.log(arr[i])
+      }
+    }
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    //L.marker([0, 0]).addTo(map);
+    //L.marker([0, 0]).addTo(map);
+    //L.marker([0, 0]).addTo(map);
 
     /* =====================
 
