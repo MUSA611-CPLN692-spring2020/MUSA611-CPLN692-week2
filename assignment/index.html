@@ -58,28 +58,34 @@
        your best to use them to organize your code.
       ===================== */
 
-
-      /* =====================
-
-      Start code
-
-      ===================== */
-
       var jsonToCsv = function(json) { console.log(json); };
-
-
       var addMarkers = function(map) {};
-
-      /* =====================
-
-      End code
-
-      ===================== */
-
 
       // `healthCenters` is defined in health_centers.js
       jsonToCsv(healthCenters);
       addMarkers(map);
+
+// part 1
+values = []
+keys = []
+
+for (i = 0; i < healthCenters.length; i++) {
+    keys.push(Object.keys(healthCenters[i]));
+    values.push(Object.values(healthCenters[i]));
+    keys.length = 1
+}
+
+final = keys.concat(values)
+
+// parts 2 and 3
+
+for (i=0; i<values.length; i++) {
+  if (values[i][5] >= 19140 && values[i][5] <= 19149) {
+    L.marker([values[i][1], values[i][0]]).bindPopup(values[i][3]).openPopup().addTo(map);
+  }
+}
+
+
     </script>
     <!--Your code ends here-->
   </body>
