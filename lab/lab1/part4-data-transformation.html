@@ -70,7 +70,12 @@
 
     ===================== */
 
-
+    var dataFiltered = [];
+    for (let i = 0; i < data.length; i++) {
+      if (data[i][3] > 20) {
+        dataFiltered.push(data[i]);
+      }
+    }
 
     /* =====================
 
@@ -97,6 +102,10 @@
 
     ===================== */
 
+
+    for (let i =0; i < dataFiltered.length; i++) {
+        L.marker(L.latLng(dataFiltered[i][1], dataFiltered[i][0])).addTo(map);
+    }
 
 
     /* =====================
