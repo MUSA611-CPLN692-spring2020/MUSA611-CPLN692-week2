@@ -31,18 +31,6 @@
         ext: 'png'
       }).addTo(map);
 
-
-      function addMarkers(map,healthcenters) {
-        for(i=0;i<healthcenters.length;i++){
-          var lat = healthcenters[i].LAT;
-          var lon = healthcenters[i].LNG;
-          L.marker([lat,lon]).addTo(map);
-        }
-      };
-
-      addMarkers(map, healthCenters);
-
-
     </script>
     <script>
       /* =====================
@@ -73,23 +61,45 @@
        your best to use them to organize your code.
       ===================== */
 
-
-      /* =====================
-
-      Start code
-
-      ===================== */
-
+      // Step1: log an array:
       var jsonToCsv = function(json) { console.log(json); };
+      jsonToCsv(healthCenters);
 
+      // Step2&3: 
 
+      // Set up icons for healthcenters with dental services
+      var dental = L.icon({
+        iconUrl: 'images/icon2.png',
+        iconSize: [30, 45],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -60],
+      });
+
+      // Set up icons for healthcenters without dental services
+      var nodental = L.icon({
+        iconUrl: 'images/icon1.png',
+        iconSize: [40, 33],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -60],
+      });
+
+      // Function for adding markers on the map
       function addMarkers(map,healthCenters) {
         for(var i=0;i<healthCenters.length;i++){
           var zip = healthCenters[i].ZIP;
+          // Filter out the points whose zipcode are out of limits
           if(zip<19149&&zip>19140){
             var lat = healthCenters[i].LAT;
             var lon = healthCenters[i].LNG;
-            L.marker([lat,lon]).addTo(map);
+            var name = healthCenters[i].NAME;
+            // Whether the point has dental service
+            if(healthCenters[i].DENTAL_PHONE.includes('N/A')){
+              L.marker([lat,lon],{icon: nodental}).bindPopup(name).openPopup().addTo(map);
+            }
+            else{
+              var dent_num = healthCenters[i].DENTAL_PHONE;
+              L.marker([lat,lon],{icon: dental}).bindPopup(name + '(dental service provided)').openPopup().addTo(map);
+            }
           }
         }
       };
