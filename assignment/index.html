@@ -65,10 +65,33 @@
 
       ===================== */
 
-      var jsonToCsv = function(json) { console.log(json); };
+      var jsonToCsv = function(json) {
+      var key= Object.keys(json[1]);
+      var result = [];
+
+      for(var i = 0; i < json.length; i++){
+        var arr = [];
+
+      for(var j = 0; j < key.length; j++){
+        arr.push(   json[i][key[j]]     );
+  };
+  result.push (arr);
+        };
+
+        json=[key,result];
+        console.log(json);
+      };
 
 
-      var addMarkers = function(map) {};
+      var addMarkers = function(map) {
+        
+        for (var i=0; i < dataMe.length; i++)
+        {
+          console.log(i)
+          L.marker([dataMe[i][1],dataMe[i][0]]).addTo(map).bindPopup(dataMe[i][2]);
+        }
+
+      };
 
       /* =====================
 
