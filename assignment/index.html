@@ -65,10 +65,42 @@
 
       ===================== */
 
+      //log the healthCenters array to console
       var jsonToCsv = function(json) { console.log(json); };
+      jsonToCsv(healthCenters)
+
+      //define my markers
+
+      var dental = L.icon({
+        iconUrl: 'images/dental.png',
+        iconSize: [40, 40],
+        iconAnchor: [22, 94], //play with it
+        popupAnchor: [-3, -60],
+      });
+
+      // Set up icons for healthcenters without dental services
+      var nodental = L.icon({
+        iconUrl: 'images/non_dental.png',
+        iconSize: [40, 40],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -60],
+      });
 
 
-      var addMarkers = function(map) {};
+      var addMarkers = function(map,healthCenters) {
+        healthCenters.forEach(function(hospital){ //19140-19149
+          if (hospital.ZIP<19150 && hospital.ZIP>19139){
+            if(hospital.DENTAL_PHONE.includes('N/A')){
+              L.marker([hospital.LAT,hospital.LNG], {icon:nodental}).bindPopup(hospital.NAME).openPopup().addTo(map)
+            }
+            else{
+              L.marker([hospital.LAT,hospital.LNG], {icon:dental}).bindPopup(hospital.NAME).openPopup().addTo(map)
+            }
+          }
+        }
+      )
+      };
+
 
       /* =====================
 
@@ -78,8 +110,7 @@
 
 
       // `healthCenters` is defined in health_centers.js
-      jsonToCsv(healthCenters);
-      addMarkers(map);
+      addMarkers(map,healthCenters);
     </script>
     <!--Your code ends here-->
   </body>
