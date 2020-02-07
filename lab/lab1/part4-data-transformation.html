@@ -63,14 +63,24 @@
     ===================== */
 
     var data = bikeArrayClean;
+    var dock =[]
+    for (i=0; i<data.length; i++){
+        dock = data.filter(morethan=>{
+        return morethan[3] > 20
+      })
+    }
+    console.log(dock)
 
-    /* =====================
+    var dock2=[]
+    for(i=0; i<bikeArrayClean.length; i++){
+      if(bikeArrayClean[i][3]>20){
+        dock2.push(bikeArrayClean[i])
+      }
+    }
 
-    Start code to filter data
-
-    ===================== */
-
-
+    for (i=0; i < dock2.length; i++){
+            L.marker([dock2[i][1],dock2[i][0]]).addTo(map)
+          }
 
     /* =====================
 
