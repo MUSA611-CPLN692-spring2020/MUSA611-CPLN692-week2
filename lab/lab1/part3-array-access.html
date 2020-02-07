@@ -65,15 +65,13 @@
       ext: 'png'
     }).addTo(map);
 
-    /* =====================
+    var restaurantData = [[39.932484, -75.146114, "label1"], [40.065270, -83.059026, "label2"], [31.233249, 121.477615, "label3"]]
 
-    Start code
+    for (i = 0; i < restaurantData.length; i++){
+      L.marker([restaurantData[i][0], restaurantData[i][1]]).addTo(map);
+      console.log(restaurantData[i])
+    }
 
-    ===================== */
-
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
 
     /* =====================
 
