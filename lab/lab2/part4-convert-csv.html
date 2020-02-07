@@ -38,15 +38,28 @@
       https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
 
       ===================== */
+      var rows=[];
+      var holder=[];
+      rows=healthCentersCSV.split(";");
+      for (i=0;i<rows.length;i++){
+        holder.push(rows[i].split(','))
+      }
+
+
 
       /* =====================
 
       Start code
 
       ===================== */
-
-      // feel free to comment this line out if it is too noisy in your console!
       console.log(healthCentersCSV)
+            rows = healthCentersCSV.split(';');
+            holder = [];
+            for (var i=0;i<rows.length;i=i+1){
+              holder.push(rows[i].split(','));
+            }
+      // feel free to comment this line out if it is too noisy in your console!
+      console.log(holder)
 
       /* =====================
 
