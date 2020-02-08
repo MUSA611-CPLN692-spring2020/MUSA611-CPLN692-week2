@@ -67,28 +67,36 @@
 
       var jsonToCsv = function(json) {
       var key= Object.keys(json[1]);
+      console.log(key);
       var result = [];
 
       for(var i = 0; i < json.length; i++){
         var arr = [];
 
-      for(var j = 0; j < key.length; j++){
-        arr.push(   json[i][key[j]]     );
+        for(var j = 0; j < key.length; j++){
+          arr.push(   json[i][key[j]]     );
   };
   result.push (arr);
         };
 
-        json=[key,result];
-        console.log(json);
+        json2=result;
+        json2.unshift(key);
+        console.log(json2);
       };
 
 
       var addMarkers = function(map) {
-        
-        for (var i=0; i < dataMe.length; i++)
+        var json3=[]
+        for(var i=1; i < json2.length; i++){
+        if((json2[i][5]>19140)&&(json2[i][5]<19149))  {
+          json3.push(json2[i]);
+        };
+
+        }
+        for (var i=1; i < json3.length; i++)
         {
           console.log(i)
-          L.marker([dataMe[i][1],dataMe[i][0]]).addTo(map).bindPopup(dataMe[i][2]);
+          L.marker([json3[i][1],json3[i][0]]).addTo(map).bindPopup(json3[i][3]);
         }
 
       };
